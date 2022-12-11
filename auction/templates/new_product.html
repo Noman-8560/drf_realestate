@@ -1,18 +1,16 @@
 {% extends 'navigation3.html' %}
 {% block body1 %}
  <div class="container" style="background:white">
-<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">All New Product</h2></center><hr>
-<div class="container-fluid" style="margin-top:5%">
+<center><h2 style = " color : #00021a ; font-weight : bold;margin-top:2%">Verify Property</h2></center>
+<div class="container-fluid" style="margin-top:3%">
 </div>
 
-<table class="table table-bordered" id="myTable">
-  <thead>
+<table class="table responsive" id="myTable">
+  <thead style="background:white;">
   <tr>
     <th>Sr. No</th>
     <th>Product Name</th>
     <th>Image</th>
-    <th>Session Date</th>
-    <th>Session Time</th>
     <th>Seller</th>
     <th>Status</th>
     <th>Detail</th>
@@ -27,8 +25,8 @@
     <td>{{forloop.counter}}</td>
     <td>{{i.product.name}}</td>
     <td><img src="{{i.product.images.url}}" style="width:100px;height:100px"></td>
-    <td>{{i.product.session.date.date}}</td>
-    <td>{{i.product.session.time}}</td>
+<!--    <td>{{i.product.session.date.date}}</td>-->
+<!--    <td>{{i.product.session.time}}</td>-->
     <td>{{i.user.user.username}}</td>
     <td>{{i.product.status.status}}</td>
     <td><a href="{% url 'product_detail2' i.product.id %}"><button class="btn btn-primary">Detail</button></a></td>

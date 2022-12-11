@@ -51,14 +51,14 @@ h2, h4{
         <div style="height:100px;" class="col-md-3 prjdiv">
             <div class="container1" style="background:#f73e3e">
             <h2 style="color:white">{{count}}</h2>
-            <a href="{% url 'new_product' %}"><h4 style="color:black">New Product</h4>
+            <a style="text-decoration:none" href="{% url 'new_product' %}"><h4 style="color:white">New Product</h4>
         </a>
             </div>
         </div>
         <div style="height:100px;" class="col-md-3 prjdiv">
             <div class="container1" style="background:#0069d1">
             <h2 style="color:white">{{all_p}}</h2>
-            <a href="{% url 'all_product2' %}"><h4 style="color:black">All Product</h4>
+            <a style="text-decoration:none" href="{% url 'all_product2' %}"><h4 style="color:white">All Product</h4>
 
             </a>
        </div>
@@ -66,14 +66,16 @@ h2, h4{
         <div style="height:100px;" class="col-md-3 prjdiv">
              <div class="container1" style="background:#07d100">
             <h2 style="color:white">{{all_b}}</h2>
-            <a href="{% url 'bidder_user' %"><h4 style="color:black">Total Bidder</h4>
+                 <a style="text-decoration:none" href="{% url 'bidder_user' %}"><h4 style="color:white">Total Buyer</h4>
+
         </a>
              </div>
         </div>
          <div style="height:100px;" class="col-md-3 prjdiv">
              <div class="container1" style="background:#d1c000">
              <h2 style="color:white">{{all_s}}</h2>
-            <a href="{% url 'seller_user' %}"><h4 style="color:black">Total Seller</h4></a>
+            <a style="text-decoration:none" href="{% url 'seller_user' %}"><h4 style="color:white">Total Seller</h4>
+            </a>
              </div>
         </div>
     </div>

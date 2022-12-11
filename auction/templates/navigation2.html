@@ -166,21 +166,21 @@ div.sticky {
     {% endblock %}
   </div>
 
-<div class="sidenav" style="top:0; margin-top:0;padding-top:0;position:fixed;height:100%">
+<div class="sidenav" style="top:0; margin-top:0;padding-top:0;position:fixed;height:100%;width:17%;">
    <div class="row" style="padding:10px;float:center" align="center">
-     <div class="col-md-4">
-            <img src="{% static 'images/logo.png' %}" style="width:90px;height:90px">
+     <div class="col-md-12">
+            <img src="{% static 'images/ABFA.png' %}" style="width:90px;height:90px">
      </div>
-     <div class="col-md-8" align="left" style="padding:7%">
-            <span style="color:red;font-weight:bold;font-size:18px">Administration</span>
-     </div>
+<!--     <div class="col-md-8" align="left" style="padding:7%">-->
+<!--            <span style="color:red;font-weight:bold;font-size:18px">Administration</span>-->
+<!--     </div>-->
    </div>
-    <div style="padding:0px;background-color:#180f3d;float:center" align="center">
-     <a href="{% url 'admin_home' %}" style="float:center;"> <i style="margin-left:40%;color:white" class="fa fa-home"></i> </a>
-  </div>
+<!--    <div style="padding:0px;background-color:#180f3d;float:center" align="center">-->
+<!--     <a href="{% url 'admin_home' %}" style="float:center;"> <i style="margin-left:40%;color:white" class="fa fa-home"></i> </a>-->
+<!--  </div>-->
         <a href="{% url 'admin_home' %}"><i class="fa fa-home"></i> Dashboard</a>
 
-    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Category
+    <button class="dropdown1-btn"><i class="fa fa-list-alt"></i> Category
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown1-container">
@@ -188,48 +188,48 @@ div.sticky {
     <a href="{% url 'view_category' %}"> View Category</a>
   </div>
 
-    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Sub-Category
+    <button class="dropdown1-btn"><i class="fa fa-list-alt"></i> Sub-Category
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown1-container">
     <a href="{% url 'add_subcategory' %}"> New Sub-Category</a>
     <a href="{% url 'view_subcategory' %}"> View Sub-Category</a>
   </div>
-    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Session Date
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown1-container">
-    <a href="{% url 'add_session_date' %}"> Add Session Date</a>
-    <a href="{% url 'view_session_date' %}"> View Session Date</a>
-  </div>
+<!--    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Session Date-->
+<!--    <i class="fa fa-caret-down"></i>-->
+<!--  </button>-->
+<!--  <div class="dropdown1-container">-->
+<!--    <a href="{% url 'add_session_date' %}"> Add Session Date</a>-->
+<!--    <a href="{% url 'view_session_date' %}"> View Session Date</a>-->
+<!--  </div>-->
 
-    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Session Time
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown1-container">
-    <a href="{% url 'add_session_time' %}"> Add Session Time</a>
-    <a href="{% url 'view_session_time' %}"> View Session Time</a>
-  </div>
+<!--    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Session Time-->
+<!--    <i class="fa fa-caret-down"></i>-->
+<!--  </button>-->
+<!--  <div class="dropdown1-container">-->
+<!--    <a href="{% url 'add_session_time' %}"> Add Session Time</a>-->
+<!--    <a href="{% url 'view_session_time' %}"> View Session Time</a>-->
+<!--  </div>-->
 
-    <button class="dropdown1-btn"><i class="fa fa-cog"></i> User
+    <button class="dropdown1-btn"><i class="fa fa-user"></i> User
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown1-container">
-    <a href="{% url 'bidder_user' %}"> Bidder User</a>
+    <a href="{% url 'bidder_user' %}"> Buyer User</a>
     <a href="{% url 'seller_user' %}"> Seller User</a>
   </div>
 
-  <button class="dropdown1-btn"><i class="fa fa-cog"></i> Product Verification
+  <button class="dropdown1-btn"><i class="fa fa-check-circle"></i> Property Verification
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown1-container">
-    <a href="{% url 'new_product' %}"> New Product</a>
-    <a href="{% url 'all_product2' %}"> View All Product</a>
+    <a href="{% url 'new_product' %}"> New Property</a>
+    <a href="{% url 'all_product2' %}"> View All Property</a>
   </div>
 
 
-    <a href="{% url 'result' %}"><i class="fa fa-folder"></i> Result</a>
-    <a href="{% url 'view_feedback' %}"><i class="fa fa-folder"></i> Feedback</a>
+<!--    <a href="{% url 'result' %}"><i class="fa fa-folder"></i> Result</a>-->
+<!--    <a href="{% url 'view_feedback' %}"><i class="fa fa-folder"></i> Feedback</a>-->
 
 
 </div>

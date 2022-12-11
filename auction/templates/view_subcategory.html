@@ -1,12 +1,12 @@
 {% extends 'navigation3.html' %}
 {% block body1 %}
  <div class="container" style="background:white">
-<center><h2 style = "font-family : 'Monotype Corsiva' ; color : #E6120E ; font-weight : bold;margin-top:2%">View Sub-Category</h2></center><hr>
-<div class="container-fluid" style="margin-top:5%">
+<center><h2 style = " color : #00021a ; font-weight : bold;margin-top:2%">View Sub-Category</h2></center>
+<div class="container-fluid" style="margin-top:3%">
 </div>
 
-<table class="table table-bordered" id="myTable">
-  <thead>
+<table class="table responsive" id="myTable">
+  <thead style="background:white;">
   <tr>
     <th>Sr. No</th>
     <th>Category name</th>
@@ -21,7 +21,8 @@
       <td>{{forloop.counter}}</td>
     <td>{{i.category.name}}</td>
     <td>{{i.name}}</td>
-      <td><a href="{% url 'edit_subcategory' i.id %}"> <i style="font-size:30px;color:green;margin-left:6%" class="fa fa-edit"></i></a>
+      <td>
+<!--          <a href="{% url 'edit_subcategory' i.id %}"> <i style="font-size:30px;color:green;margin-left:6%" class="fa fa-edit"></i></a>-->
           <a href="{% url 'delete_subcategory' i.id %}">  <i style="font-size:30px;color:red;margin-left:12%" class="fa fa-trash-o" onclick="return confirm('Are you sure?')"></i></a></td>
   </tr>
    {% endfor %}

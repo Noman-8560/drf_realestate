@@ -393,7 +393,7 @@ def Add_Category(request):
         if pro:
             error = "pat"
     except:
-        pro = Auction_User.objects.get(user=user1)
+        pro = Auction_User.objects.all().first()
     error = False
     if request.method == 'POST':
         n = request.POST['cat']
@@ -413,11 +413,11 @@ def Edit_Category(request, pid):
     user1 = User.objects.get(id=request.user.id)
     pro = ""
     try:
-        pro = Bidder.objects.get(user=user1)
+        pro = Bidder.objects.all().first()
         if pro:
             error = "pat"
     except:
-        pro = Auction_User.objects.get(user=user1)
+        pro = Auction_User.objects.all().first()
     error = False
     cat = Category.objects.get(id=pid)
     if request.method == 'POST':
@@ -445,11 +445,11 @@ def view_category(request):
     user1 = User.objects.get(id=request.user.id)
     pro = ""
     try:
-        pro = Bidder.objects.get(user=user1)
+        pro = Bidder.objects.all().first()
         if pro:
             error = "pat"
     except:
-        pro = Auction_User.objects.get(user=user1)
+        pro = Auction_User.objects.all().first()
     cat = Category.objects.all()
     d = {'error': error, 'pro': pro, 'data': pro, 'cat': cat, 'count': count, 'new2': new2}
     return render(request, 'view_category.html', d)
@@ -489,7 +489,7 @@ def Add_SubCategory(request):
         if pro:
             error = "pat"
     except:
-        pro = Auction_User.objects.get(user=user1)
+        pro = Auction_User.objects.all().first()
     error = False
     cat = Category.objects.all()
     if request.method == 'POST':
@@ -537,6 +537,12 @@ def delete_subcategory(request, pid):
     return redirect('view_subcategory')
 
 
+def delete_property(request, pid):
+    cat = Sub_Category.objects.get(id=pid)
+    cat.delete()
+    return redirect('all_product2')
+
+
 def delete_feedback(request, pid):
     cat = Send_Feedback.objects.get(id=pid)
     cat.delete()
@@ -553,11 +559,11 @@ def view_subcategory(request):
     user1 = User.objects.get(id=request.user.id)
     pro = ""
     try:
-        pro = Bidder.objects.get(user=user1)
+        pro = Bidder.objects.all().first()
         if pro:
             error = "pat"
     except:
-        pro = Auction_User.objects.get(user=user1)
+        pro = Auction_User.objects.all().first()
     cat = Sub_Category.objects.all()
     d = {'error': error, 'pro': pro, 'data': pro, 'cat': cat, 'count': count, 'new2': new2}
     return render(request, 'view_subcategory.html', d)
@@ -716,7 +722,7 @@ def Bidder_User(request):
     user1 = User.objects.get(id=request.user.id)
     pro = ""
     try:
-        pro = Bidder.objects.get(user=user1)
+        pro = Bidder.objects.all().first()
         if pro:
             error = "pat"
     except:
