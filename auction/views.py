@@ -156,8 +156,8 @@ def Bidder_Home(request):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('add_product')
     d = {'error': error, 'data': data}
     return render(request, 'dashboard.html', d)
 
@@ -962,14 +962,14 @@ def Add_Product(request):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     date1 = datetime.date.today()
     sed = Session_date.objects.all()
     sett = Session_Time.objects.all()
     cat = Category.objects.all()
     scat = Sub_Category.objects.all()
-    sell = Auction_User.objects.all()
+    sell = Auction_User.objects.get(user=user)
     terror = False
     if request.method == "POST":
         c = request.POST['cat']
@@ -977,15 +977,15 @@ def Add_Product(request):
         p = request.POST['p_name']
         pr = request.POST['price']
         i = request.FILES['image']
-        # sett1 = request.POST['time']
-        # sed1 = request.POST['date']
+        sett1 = request.POST['time']
+        sed1 = request.POST['date']
         sub = Sub_Category.objects.get(id=s)
-        # ses = Session_Time.objects.get(id=sett1)
+        ses = Session_Time.objects.get(id=sett1)
         sta = Status.objects.get(status="pending")
-        pro1 = Product.objects.create(status=sta,  category=sub, name=p, min_price=pr, images=i)
-        auc = Aucted_Product.objects.create(product=pro1, user=sell)
+        pro1=Product.objects.create(status=sta,session=ses,category=sub,name=p, min_price=pr, images=i)
+        auc=Aucted_Product.objects.create(product=pro1,user=sell)
         terror = True
-    d = {'cat': cat, 'scat': scat, 'terror': terror, 'error': error}
+    d = {'sed': sed,'sett':sett,'cat': cat,'scat':scat,'date1': date1,'terror':terror,'error':error}
     return render(request, 'add_product.html', d)
 
 
@@ -1008,7 +1008,7 @@ def load_courses1(request):
     return render(request, 'courses_dropdown_list_options1.html', {'courses': courses})
 
 
-def view_auction(request, pid):
+def view_auction(request,pid):
     if not request.user.is_authenticated:
         return redirect('login_user')
     data = 0
@@ -1026,7 +1026,7 @@ def view_auction(request, pid):
     if request.method == "POST":
         pro1 = Product.objects.get(id=pid)
         auc = Aucted_Product.objects.get(product=pro1)
-        Participant.objects.create(user=data, aucted_product=auc)
+        Participant.objects.create(user=data,aucted_product=auc)
         terror = True
     pid = 0
     d1 = Participant.objects.filter(user=data)
@@ -1037,7 +1037,7 @@ def view_auction(request, pid):
     status = Status.objects.get(status="Accept")
     pro = Product.objects.filter(status=status)
     pro1 = Product.objects.all()
-    message1 = ""
+    message1=""
     if not pro:
         message1 = " No Any Bidding Product "
     for i in pro:
@@ -1047,8 +1047,48 @@ def view_auction(request, pid):
         else:
             i.temp = 0
             i.save()
-    d = {'pro': pro1, 'error': error, 'terror': terror, 'message1': message1}
-    return render(request, 'view_auction.html', d)
+    for i in pro:
+        a = i.session.date.date
+        li = a.split('-')
+        total_time = (int(li[0]) * 365) + (int(li[1]) * 30) + (int(li[2]))
+        d1 = datetime.date.today()
+        d2 = datetime.datetime.now()
+        c_time = d2.strftime("%H:%M")
+        y = d1.year
+        m = d1.month
+        d = d1.day
+        now_total = (int(y) * 365) + (int(m) * 30) + (int(d))
+        part = Participant.objects.all()
+        for l in part:
+            z=l.aucted_product.product.session.date.date
+            li2 = z.split('-')
+            total_time_part = (int(li2[0]) * 365) + (int(li2[1]) * 30) + (int(li2[2]))
+            if total_time_part < now_total:
+                if l.result is None:
+                    r = Result.objects.get(result="notproper")
+                    l.result = r
+                    l.save()
+        li2 = i.session.time.split(':')
+        li3 = c_time.split(':')
+        time1 = (int(li2[0]) * 60) + int(li2[1])
+        time2 = (int(li3[0]) * 60) + int(li3[1])
+        time3 = time1 + 60
+        if total_time == now_total:
+            if time1 == time2:
+                i.temp = 2
+                i.save()
+            elif time2 < time3 and time2>time1:
+                i.temp = 2
+                i.save()
+            elif time2 > time3:
+                i.temp = 3
+                i.save()
+        elif total_time < now_total:
+
+            i.temp = 3
+            i.save()
+    d = {'pro':pro1,'error':error,'terror':terror,'message1':message1}
+    return render(request,'view_auction.html',d)
 
 
 def All_product(request):
@@ -1064,8 +1104,8 @@ def All_product(request):
     except:
         data = Auction_User.objects.get(user=user)
 
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     pro = Aucted_Product.objects.filter(user=data)
     d = {'pro': pro, 'error': error}
     return render(request, 'All_prodcut.html', d)
@@ -1093,8 +1133,8 @@ def product_detail(request, pid):
     else:
         end1 = str(int(end[0]) + 1)
     end2 = end1 + ":" + end[1]
-    pro1 = Aucted_Product.objects.get(product=pro)
-    d = {'pro': pro, 'pro1': pro1, 'error': error, 'end2': end2}
+    pro1 = Aucted_Product.objects.all().first()
+    d = {'pro': pro, 'pro1': pro1, 'error': error}
     return render(request, 'product_detail.html', d)
 
 
@@ -1112,14 +1152,14 @@ def product_detail2(request, pid):
         data = Auction_User.objects.all().first()
 
     pro = Product.objects.get(id=pid)
-    # end = pro.session.time.split(':')
-    # end1 = ""
-    # if end[0] == "23":
-    #     end1 = "00"
-    # else:
-    #     end1 = str(int(end[0]) + 1)
-    # end2 = end1 + ":" + end[1]
-    pro1 = Aucted_Product.objects.get(product=pro)
+    end = pro.session.time.split(':')
+    end1 = ""
+    if end[0] == "23":
+        end1 = "00"
+    else:
+        end1 = str(int(end[0]) + 1)
+    end2 = end1 + ":" + end[1]
+    pro1 = Aucted_Product.objects.all().first()
     d = {'pro': pro, 'pro1': pro1, 'error': error, 'data': data,}
     return render(request, 'product_detail2.html', d)
 
@@ -1136,8 +1176,8 @@ def Bidding_Status(request):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     pro = Participant.objects.filter(user=data)
     d = {'pro': pro, 'error': error}
     return render(request, 'bidding_status.html', d)
@@ -1331,8 +1371,8 @@ def Start_Auction(request, pid):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
 
     pro4 = Product.objects.get(id=pid)
     end = pro4.session.time.split(':')
@@ -1441,7 +1481,7 @@ def Change_status(request, pid):
 
 
 def winner_announced(request):
-    return redirec('result')
+    return redirect('result')
 
 
 # class UserSerializer(serializers.ModelSerializer):

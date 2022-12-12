@@ -49,7 +49,27 @@
     <input type="file" class="form-control" id="exampleInputPassword1" name="image">
 </div>
     </div>
+    <div class="form-row">
+        <div class="col-md-6">
+     <div class="form-group">
+    <label for="exampleFormControlSelect1">Select Session Date</label>
+    <select class="form-control" id="programming1" name="date">
+        <option value="">---select Session Date---</option>
+            {% for i in sed %}
+            <option value="{{i.id}}">{{i.date}}</option>
+            {% endfor %}
+    </select>
+     </div>
+        </div>
+        <div class="col-md-6">
+     <div class="form-group">
+    <label for="exampleFormControlSelect1">Session Time</label>
+    <select class="form-control" id="courses1" name="time">
 
+    </select>
+     </div>
+        </div>
+    </div>
 
 
 

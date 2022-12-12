@@ -15,17 +15,17 @@
 {% endif %}
 
 <div class="container">
-<div class="container-fluid" style="border-radius:10px;width:70%;margin-top:6%;background-color:whitesmoke">
+<div class="container-fluid" style="border-radius:10px;width:50%;margin-top:6%;background-color:white">
 
   <div class="row">
-    <div class="col-md-6">
-    <img src="{% static 'images/auction6.jpg' %}" style="width:100%;height:600px">
-    </div>
-    <div class="col-md-6">
+<!--    <div class="col-md-6">-->
+<!--    <img src="{% static 'images/auction6.jpg' %}" style="width:100%;height:600px">-->
+<!--    </div>-->
+    <div class="col-md-12">
 
-      <img src="{% static 'images/location.png' %}" style="margin-top:2%;width:40%;margin-left:29%">
-<h3 align="center" style="margin-top:4%">Sign In</h3>
-      <p align="center">Enter Your Email Address and Password for access Admin panel</p>
+<!--      <img src="{% static 'images/location.png' %}" style="margin-top:2%;width:40%;margin-left:29%">-->
+<h3 align="center" style="color:#181D31;margin-top:4%">Sign In</h3><hr>
+<!--      <p align="center">Enter Your username and Password for access Admin panel</p>-->
       <form method="post" action="">
     {% csrf_token %}
   <div class="form-group">
@@ -36,7 +36,7 @@
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd">
   </div>
-  <button type="submit" class="btn btn-primary" style="margin-top:2%;width:96%">SUBMIT</button>
+  <button type="submit" class="btn" style="margin-top:2%;width:50%;background-color:#181D31;color:white;margin-left:25%">SUBMIT</button>
 </form>
     </div>
   </div>
