@@ -2,7 +2,7 @@
 {% block body %}
 {% load static %}
 
-<div class="container" style="width:60%;margin-top:2%;margin-bottom:4%;border:1px solid grey;border-radius:4px">
+<div class="container" style="width:60%;margin-top:2%;margin-bottom:4%;box-shadow: 10px ;">
     <center><h4 style="margin:4%">Product Details</h4></center><hr>
     <div class="row" style="padding:20px">
         <div class="col-md-6">
@@ -33,8 +33,10 @@
                      <span>Property Price : </span>
                 </div>
                 <div class="col-md-6">
-                     <span style="font-weight:bold"> &#8377;{{pro.min_price}}.00 /-</span><hr>
+                     <span style="font-weight:bold"> ${{pro.min_price}}.00 /-</span><hr>
                 </div>
+                        <div id="paypal-button-container" class="mt-3"></div>
+
             </div>
 
        <br />
@@ -49,5 +51,58 @@
         </div>
     </div>
 </div>
+
+{% block scripts %}
+<script src="https://www.paypal.com/sdk/js?client-id=ATAvtqDWjHGNqwZbr1oJyuv1WRLbKEbJ4N7lapc41H8UbIO8bPMwpmful21S7R755eqF44FpxilgDgun&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="integrationbuilder"></script>
+ <script>
+          const paypalButtonsComponent = paypal.Buttons({
+              // optional styling for buttons
+              // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+              style: {
+                color: "gold",
+                shape: "rect",
+                layout: "vertical"
+              },
+
+              // set up the transaction
+              createOrder: (data, actions) => {
+                  // pass in any options from the v2 orders create call:
+                  // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+                  const createOrderPayload = {
+                      purchase_units: [
+                          {
+                              amount: {
+                                  value: {{pro.min_price}}
+                              }
+                          }
+                      ]
+                  };
+
+                  return actions.order.create(createOrderPayload);
+              },
+
+              // finalize the transaction
+              onApprove: (data, actions) => {
+                  const captureOrderHandler = (details) => {
+                      const payerName = details.payer.name.given_name;
+                      console.log('Transaction completed');
+                  };
+
+                  return actions.order.capture().then(captureOrderHandler);
+              },
+
+              // handle unrecoverable errors
+              onError: (err) => {
+                  console.error('An error prevented the buyer from checking out with PayPal');
+              }
+          });
+
+          paypalButtonsComponent
+              .render("#paypal-button-container")
+              .catch((err) => {
+                  console.error('PayPal Buttons failed to render');
+              });
+        </script>
+{% endblock scripts %}
 
 {% endblock %}
