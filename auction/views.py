@@ -977,10 +977,10 @@ def Add_Product(request):
         p = request.POST['p_name']
         pr = request.POST['price']
         i = request.FILES['image']
-        sett1 = request.POST['time']
-        sed1 = request.POST['date']
+        # sett1 = request.POST['time']
+        # sed1 = request.POST['date']
         sub = Sub_Category.objects.get(id=s)
-        ses = Session_Time.objects.get(id=sett1)
+        ses = Session_Time.objects.all().first()
         sta = Status.objects.get(status="pending")
         pro1=Product.objects.create(status=sta,session=ses,category=sub,name=p, min_price=pr, images=i)
         auc=Aucted_Product.objects.create(product=pro1,user=sell)
