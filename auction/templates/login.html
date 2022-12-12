@@ -5,13 +5,13 @@
 {% if error == "pat" %}
 <script>
     alert('logged in successfully');
-    window.location=('{% url 'profile1' %}');
+    window.location=('{% url 'view_auction' 0 %}');
 </script>
 {% endif %}
 {% if error == "pat1" %}
 <script>
     alert('logged in successfully');
-    window.location=('{% url 'profile1' %}');
+    window.location=('{% url 'seller_home' %}');
 </script>
 {% endif %}
 {% if error == "not" %}
@@ -29,7 +29,7 @@
       <p>By creating an account with our store,we will be able to move through the
       checkout process faster,store multiple shipping addresses,view and track your orders in your
         account and more.</p>
-  <button class="btn btn-danger"style="color:white;margin-top:4%"><a href="{% url 'signup' %}" style="color:white">CREATE AN ACCOUNT</a></button>
+  <button class="btn"style="background-color:#181D31;color:white;margin-top:4%"><a href="{% url 'signup' %}" style="color:white">CREATE AN ACCOUNT</a></button>
     </div>
     <div class="col-md-6">
       <h2 class="text-center">Login Form</h2><hr>
@@ -44,7 +44,7 @@
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd">
   </div>
-  <button type="submit" class="btn btn-danger" style="margin-top:2%">SUBMIT</button>
+  <button type="submit" class="btn" style="background-color:#181D31;color:white;margin-top:2%">SUBMIT</button>
 </form>
     </div>
   </div>

@@ -39,7 +39,7 @@ margin-left:30%;
 #myTable th {
   text-align: left;
   padding: 12px;
-  background-color: Navy;
+  background-color: #181D31;
   color: white;
 }
 
@@ -138,7 +138,7 @@ margin-left:30%;
 <nav class="navbar navbar-expand-sm" style="background-color:white">
   <!-- Brand -->
   <a class="navbar-brand" href="#" style="color:lime"></a>
-<img src="{% static 'images/ABFA.png' %}" style="width:80px;height:100px">
+<img src="{% static 'images/ABFA.png' %}" style="width:70px;height:70px">
 
 
 
@@ -149,35 +149,18 @@ margin-left:30%;
     {% if error == "pat" %}
 
    <li class="nav-item">
-      <a class="nav-link" href="{% url 'about' %}" style="color:black;margin-left:200px">
-      <ion-icon style="margin-right:4px" name="home-sharp"></ion-icon> HOME</a>
+      <a class="nav-link" href="{% url 'profile1' %}" style="color:black;margin-left:200px">
+      <ion-icon style="margin-right:4px" name="book"></ion-icon> Profile</a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="{% url 'view_auction' 0 %}" style="color:black">
-      <ion-icon style="margin-right:4px" name="eye"></ion-icon>Buy Property</a>
+      <ion-icon style="margin-right:4px" name="easel"></ion-icon>Buy Property</a>
     </li>
-
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link" href="{% url 'bidding_status' %}" style="color:black">-->
-<!--      <ion-icon style="margin-right:4px" name="eye"></ion-icon> Bidding Status</a>-->
-<!--    </li>-->
-
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link" href="{% url 'feedback' %}" style="color:black">-->
-<!--      <ion-icon style="margin-right:4px" name="aperture"></ion-icon> Feedback</a>-->
-<!--    </li>-->
-
-
-
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link" href="{% url 'change_password1' %}" style="color:black">-->
-<!--      <ion-icon style="margin-right:4px" name="document-text-sharp"></ion-icon>CHANGE PASSWORD</a>-->
-<!--    </li>-->
 </div>
     {% else %}
      <li class="nav-item">
-      <a class="nav-link" href="{% url 'about' %}" style="color:black;margin-left:200px"><ion-icon style="margin-right:2px" name="home-sharp"></ion-icon> HOME</a>
+      <a class="nav-link" href="{% url 'seller_home' %}" style="color:black;margin-left:200px"><ion-icon style="margin-right:2px" name="home-sharp"></ion-icon> HOME</a>
     </li>
 
     <li class="nav-item">
