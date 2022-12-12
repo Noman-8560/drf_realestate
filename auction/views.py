@@ -1039,46 +1039,46 @@ def view_auction(request, pid):
         else:
             i.temp = 0
             i.save()
-    for i in pro:
-        a = i.session.date.date
-        li = a.split('-')
-        total_time = (int(li[0]) * 365) + (int(li[1]) * 30) + (int(li[2]))
-        d1 = datetime.date.today()
-        d2 = datetime.datetime.now()
-        c_time = d2.strftime("%H:%M")
-        y = d1.year
-        m = d1.month
-        d = d1.day
-        now_total = (int(y) * 365) + (int(m) * 30) + (int(d))
-        part = Participant.objects.all()
-        for l in part:
-            z = l.aucted_product.product.session.date.date
-            li2 = z.split('-')
-            total_time_part = (int(li2[0]) * 365) + (int(li2[1]) * 30) + (int(li2[2]))
-            if total_time_part < now_total:
-                if l.result is None:
-                    r = Result.objects.get(result="notproper")
-                    l.result = r
-                    l.save()
-        li2 = i.session.time.split(':')
-        li3 = c_time.split(':')
-        time1 = (int(li2[0]) * 60) + int(li2[1])
-        time2 = (int(li3[0]) * 60) + int(li3[1])
-        time3 = time1 + 60
-        if total_time == now_total:
-            if time1 == time2:
-                i.temp = 2
-                i.save()
-            elif time2 < time3 and time2 > time1:
-                i.temp = 2
-                i.save()
-            elif time2 > time3:
-                i.temp = 3
-                i.save()
-        elif total_time < now_total:
-
-            i.temp = 3
-            i.save()
+    # for i in pro:
+    #     a = i.session.date.date
+    #     li = a.split('-')
+    #     total_time = (int(li[0]) * 365) + (int(li[1]) * 30) + (int(li[2]))
+    #     d1 = datetime.date.today()
+    #     d2 = datetime.datetime.now()
+    #     c_time = d2.strftime("%H:%M")
+    #     y = d1.year
+    #     m = d1.month
+    #     d = d1.day
+    #     now_total = (int(y) * 365) + (int(m) * 30) + (int(d))
+    #     part = Participant.objects.all()
+    #     for l in part:
+    #         z = l.aucted_product.product.session.date.date
+    #         li2 = z.split('-')
+    #         total_time_part = (int(li2[0]) * 365) + (int(li2[1]) * 30) + (int(li2[2]))
+    #         if total_time_part < now_total:
+    #             if l.result is None:
+    #                 r = Result.objects.get(result="notproper")
+    #                 l.result = r
+    #                 l.save()
+    #     li2 = i.session.time.split(':')
+    #     li3 = c_time.split(':')
+    #     time1 = (int(li2[0]) * 60) + int(li2[1])
+    #     time2 = (int(li3[0]) * 60) + int(li3[1])
+    #     time3 = time1 + 60
+    #     if total_time == now_total:
+    #         if time1 == time2:
+    #             i.temp = 2
+    #             i.save()
+    #         elif time2 < time3 and time2 > time1:
+    #             i.temp = 2
+    #             i.save()
+    #         elif time2 > time3:
+    #             i.temp = 3
+    #             i.save()
+    #     elif total_time < now_total:
+    #
+    #         i.temp = 3
+    #         i.save()
     d = {'pro': pro1, 'error': error, 'terror': terror, 'message1': message1}
     return render(request, 'view_auction.html', d)
 
