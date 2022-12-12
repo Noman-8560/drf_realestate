@@ -6,7 +6,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="container" style="background:white">
-    <h2 style="font-weight:bold;font-family : 'Monotype Corsiva' ; color : #E6120E ;margin-top:20px" align="center">Add Product</h2><hr>
+    <h2 style="font-weight:bold; color : #181D31 ;margin-top:20px" align="center">Add Property</h2><hr>
 
 <div class="container-fluid" style="width:70%;margin-top:6%">
 <form method="post" action="" id="indexForm" enctype="multipart/form-data" data-courses-url="{% url 'ajax_load_courses' %}" data-courses-url1="{% url 'ajax_load_courses1' %}">
@@ -35,46 +35,26 @@
 
         <div class="form-row">
     <div class="form-group col-md-6">
-    <label for="exampleInputPassword1">Product name</label>
+    <label for="exampleInputPassword1">Property Name</label>
     <input type="text" class="form-control" placeholder="Enter product Name" id="exampleInputPassword1" name="p_name">
 </div>
             <div class="form-group col-md-6">
-    <label for="exampleInputPassword1">Minimum Price</label>
+    <label for="exampleInputPassword1">Price</label>
     <input type="number" class="form-control" id="exampleInputPassword1" name="price">
 </div></div>
 
     <div class="form-row">
     <div class="form-group col-md-12">
-    <label for="exampleInputPassword1">Product Image</label>
+    <label for="exampleInputPassword1">Property Image</label>
     <input type="file" class="form-control" id="exampleInputPassword1" name="image">
 </div>
     </div>
 
 
-    <div class="form-row">
-        <div class="col-md-6">
-     <div class="form-group">
-    <label for="exampleFormControlSelect1">Select Session Date</label>
-    <select class="form-control" id="programming1" name="date">
-        <option value="">---select Session Date---</option>
-            {% for i in sed %}
-            <option value="{{i.id}}">{{i.date}}</option>
-            {% endfor %}
-    </select>
-     </div>
-        </div>
-        <div class="col-md-6">
-     <div class="form-group">
-    <label for="exampleFormControlSelect1">Session Time</label>
-    <select class="form-control" id="courses1" name="time">
 
-    </select>
-     </div>
-        </div>
-    </div>
 
     <div align="center">
-  <button type="submit" style="width:100%;margin-bottom:5%;" class="btn btn-primary">Submit</button>
+  <button type="submit" style="width:100%;margin-bottom:5%;background-color:#181D31;color:white;border:none" class="btn">Submit</button>
     </div>
 </form>
 </div>

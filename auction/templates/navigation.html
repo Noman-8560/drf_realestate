@@ -23,16 +23,11 @@
   box-sizing: border-box;
 }
 
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 20%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+
+ul{
+margin-left:30%;
 }
+
 
 #myTable {
   border-collapse: collapse;
@@ -107,9 +102,9 @@
 }
 
 .nav-link:hover{
-  color: yellow !important;
+  color: white !important;
   font-weight:bold;
-  background-color : red;
+  background-color : #181D31;
   border-radius:10px
 }
 
@@ -130,19 +125,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div class="container-fluid" style="padding:1%">
-<div class="row">
-<div class="col-md-6">
-<img src="{% static 'images/logo.png' %}" style="width:80px;height:100px">
-    <span style="font-size:40px;font-weight:bold;padding:2%"><span style="color:green">ABFA</span></h4>
-</div>
+<!--<div class="container-fluid" style="padding:1%">-->
+<!--<div class="row">-->
+<!--<div class="col-md-6">-->
+<!--<img src="{% static 'images/logo.png' %}" style="width:80px;height:100px">-->
+<!--    <span style="font-size:40px;font-weight:bold;padding:2%"><span style="color:green">ABFA</span></h4>-->
+<!--</div>-->
 
-</div>
-</div>
+<!--</div>-->
+<!--</div>-->
 
-<nav class="navbar navbar-expand-sm" style="background-color:lightgrey">
+<nav class="navbar navbar-expand-sm" style="background-color:white">
   <!-- Brand -->
   <a class="navbar-brand" href="#" style="color:lime"></a>
+<img src="{% static 'images/ABFA.png' %}" style="width:80px;height:100px">
+
 
 
   <!-- Links -->
@@ -152,57 +149,57 @@
     {% if error == "pat" %}
 
    <li class="nav-item">
-      <a class="nav-link" href="{% url 'profile1' %}" style="color:black;margin-left:200px">
+      <a class="nav-link" href="{% url 'home'  %}" style="color:black;margin-left:200px">
       <ion-icon style="margin-right:4px" name="home-sharp"></ion-icon> HOME</a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="{% url 'view_auction' 0 %}" style="color:black">
-      <ion-icon style="margin-right:4px" name="eye"></ion-icon> Auction</a>
+      <ion-icon style="margin-right:4px" name="eye"></ion-icon>Buy Property</a>
     </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'bidding_status' %}" style="color:black">
-      <ion-icon style="margin-right:4px" name="eye"></ion-icon> Bidding Status</a>
-    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link" href="{% url 'bidding_status' %}" style="color:black">-->
+<!--      <ion-icon style="margin-right:4px" name="eye"></ion-icon> Bidding Status</a>-->
+<!--    </li>-->
 
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'feedback' %}" style="color:black">
-      <ion-icon style="margin-right:4px" name="aperture"></ion-icon> Feedback</a>
-    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link" href="{% url 'feedback' %}" style="color:black">-->
+<!--      <ion-icon style="margin-right:4px" name="aperture"></ion-icon> Feedback</a>-->
+<!--    </li>-->
 
 
 
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'change_password1' %}" style="color:black">
-      <ion-icon style="margin-right:4px" name="document-text-sharp"></ion-icon>CHANGE PASSWORD</a>
-    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link" href="{% url 'change_password1' %}" style="color:black">-->
+<!--      <ion-icon style="margin-right:4px" name="document-text-sharp"></ion-icon>CHANGE PASSWORD</a>-->
+<!--    </li>-->
 </div>
     {% else %}
      <li class="nav-item">
-      <a class="nav-link" href="{% url 'profile1' %}" style="color:black;margin-left:200px"><ion-icon style="margin-right:2px" name="home-sharp"></ion-icon> HOME</a>
+      <a class="nav-link" href="{% url 'about' %}" style="color:black;margin-left:200px"><ion-icon style="margin-right:2px" name="home-sharp"></ion-icon> HOME</a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="{% url 'add_product' %}" style="color:black">
-      <ion-icon style="margin-right:2px" name="eye"></ion-icon> Add Product</a>
+      <ion-icon style="margin-right:2px" name="eye"></ion-icon> Add Property</a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="{% url 'all_product' %}" style="color:black">
-      <ion-icon style="margin-right:2px" name="eye"></ion-icon> All Product</a>
+      <ion-icon style="margin-right:2px" name="eye"></ion-icon> All Property</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'bidding_status2' %}" style="color:black"><ion-icon style="margin-right:2px" name="aperture"></ion-icon> Bidding Status</a>
+      <a class="nav-link" href="{% url 'bidding_status2' %}" style="color:black"><ion-icon style="margin-right:2px" name="aperture"></ion-icon>Status</a>
     </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'feedback' %}" style="color:black"><ion-icon style="margin-right:2px" name="send"></ion-icon> Feedback</a>
-    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link" href="{% url 'feedback' %}" style="color:black"><ion-icon style="margin-right:2px" name="send"></ion-icon> Feedback</a>-->
+<!--    </li>-->
 
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'change_password1' %}" style="color:black"><ion-icon style="margin-right:2px" name="document-text-sharp"></ion-icon>CHANGE PASSWORD</a>
-    </li>
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link" href="{% url 'change_password1' %}" style="color:black"><ion-icon style="margin-right:2px" name="document-text-sharp"></ion-icon>CHANGE PASSWORD</a>-->
+<!--    </li>-->
 </div>
 {% endif %}
     {% else %}
@@ -225,17 +222,19 @@
 
 
     {% if request.user.is_authenticated %}
-    <a class="nav-link" href="{% url 'logout' %}" style="color:black"><ion-icon style="margin-right:2px" name="power-sharp"></ion-icon>LOGOUT</a>
+<!--    <a class="nav-link" href="{% url 'logout' %}" style="color:black"><ion-icon style="margin-right:2px" name="power-sharp"></ion-icon>LOGOUT</a>-->
     </li>
     {% if not request.user.is_staff %}
       <div class="btn-group">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <ion-icon style="margin-right:4px;color:black" name="person-circle-sharp"></ion-icon>Welcome {{request.user.first_name}}
+  <button type="button" style="background-color:#181D31;border:none;color:white;margin-left:1px" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <ion-icon style="margin-right:4px;color:white" name="person-circle-sharp"></ion-icon>Welcome {{request.user.first_name}}
   </button>
   <div class="dropdown-menu">
     <a class="dropdown-item" href="{% url 'profile1' %}">VIEW PROFILE</a>
-    <a class="dropdown-item" href="{% url 'edit_profile1' %}">EDIT PROFILE</a>
+<!--    <a class="dropdown-item" href="{% url 'edit_profile1' %}">EDIT PROFILE</a>-->
     <a class="dropdown-item" href="{% url 'change_password1' %}">CHANGE PASSWORD</a>
+      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+
   </div>
 </div>
     {% else %}

@@ -969,15 +969,15 @@ def Add_Product(request):
         p = request.POST['p_name']
         pr = request.POST['price']
         i = request.FILES['image']
-        sett1 = request.POST['time']
-        sed1 = request.POST['date']
+        # sett1 = request.POST['time']
+        # sed1 = request.POST['date']
         sub = Sub_Category.objects.get(id=s)
-        ses = Session_Time.objects.get(id=sett1)
+        # ses = Session_Time.objects.get(id=sett1)
         sta = Status.objects.get(status="pending")
-        pro1 = Product.objects.create(status=sta, session=ses, category=sub, name=p, min_price=pr, images=i)
+        pro1 = Product.objects.create(status=sta,  category=sub, name=p, min_price=pr, images=i)
         auc = Aucted_Product.objects.create(product=pro1, user=sell)
         terror = True
-    d = {'sed': sed, 'sett': sett, 'cat': cat, 'scat': scat, 'date1': date1, 'terror': terror, 'error': error}
+    d = {'cat': cat, 'scat': scat, 'terror': terror, 'error': error}
     return render(request, 'add_product.html', d)
 
 
@@ -1144,15 +1144,15 @@ def product_detail2(request, pid):
         data = Auction_User.objects.all().first()
 
     pro = Product.objects.get(id=pid)
-    end = pro.session.time.split(':')
-    end1 = ""
-    if end[0] == "23":
-        end1 = "00"
-    else:
-        end1 = str(int(end[0]) + 1)
-    end2 = end1 + ":" + end[1]
+    # end = pro.session.time.split(':')
+    # end1 = ""
+    # if end[0] == "23":
+    #     end1 = "00"
+    # else:
+    #     end1 = str(int(end[0]) + 1)
+    # end2 = end1 + ":" + end[1]
     pro1 = Aucted_Product.objects.get(product=pro)
-    d = {'pro': pro, 'pro1': pro1, 'error': error, 'data': data, 'end2': end2}
+    d = {'pro': pro, 'pro1': pro1, 'error': error, 'data': data,}
     return render(request, 'product_detail2.html', d)
 
 
@@ -1187,8 +1187,8 @@ def Bidding_Status2(request):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     pro1 = Aucted_Product.objects.filter(user=data)
     d = {'pro': pro1, 'error': error}
     return render(request, 'bidding_status2.html', d)
