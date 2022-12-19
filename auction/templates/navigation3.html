@@ -14,7 +14,7 @@
             <a class="dropdown-item" href="#">Notification</a><hr>
           {% for i in new2 %}
             <a class="dropdown-item" href="">
-                <a href="{% url 'product_detail2' i.id %}"><span><i class="fa fa-user-circle" style="font-size:17px"></i> ({{forloop.counter}}.) New :{{i.name}}</span></a>
+                <a href="{% url 'product_detail2' i.id %}"><span><i class="fa fa-user-circle" style="font-size:17px"></i> ({{forloop.counter}}.) {{i.name}}</span></a>
           {% endfor %}
         </div><hr>
       </li>

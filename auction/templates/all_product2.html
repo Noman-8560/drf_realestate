@@ -9,8 +9,8 @@
   <thead style="background:white;">
   <tr>
     <th>Sr. No</th>
-    <th>Product Name</th>
-    <th>Image</th>
+      <th>Image</th>
+    <th>Property Name</th>
 <!--    <th>Session Date</th>-->
 <!--    <th>Session Time</th>-->
     <th>Seller</th>
@@ -23,8 +23,8 @@
 {% for i in prod %}
   <tr>
     <td>{{forloop.counter}}</td>
+          <td><img src="{{i.product.images.url}}" style="width:70px;height:70px;border-radius: 50%;"></td>
     <td>{{i.product.name}}</td>
-    <td><img src="{{i.product.images.url}}" style="width:100px;height:100px"></td>
 <!--    <td>{{i.product.session.date.date}}</td>-->
 <!--    <td>{{i.product.session.time}}</td>-->
     <td>{{i.user.user.username}}</td>

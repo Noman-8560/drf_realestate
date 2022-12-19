@@ -1008,7 +1008,7 @@ def load_courses1(request):
     return render(request, 'courses_dropdown_list_options1.html', {'courses': courses})
 
 
-def view_auction(request,pid):
+def view_property(request,pid):
     if not request.user.is_authenticated:
         return redirect('login_user')
     data = 0
@@ -1088,7 +1088,7 @@ def view_auction(request,pid):
             i.temp = 3
             i.save()
     d = {'pro':pro1,'error':error,'terror':terror,'message1':message1}
-    return render(request,'view_auction.html',d)
+    return render(request,'view_property.html',d)
 
 
 def All_product(request):
