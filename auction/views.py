@@ -109,11 +109,11 @@ def Signup_User(request):
         reg = request.POST['reg']
         i = request.FILES['image']
         user = User.objects.create_user(email=e, username=u, password=p, first_name=f, last_name=l)
-        mem = Member_fee.objects.get(fee="Unpaid")
+        # mem = Member_fee.objects.get(fee="Unpaid")
         if reg == "Bidder":
-            sign = Bidder.objects.create(membership=mem, user=user, contact=con, address=add, dob=d2, image=i)
+            sign = Bidder.objects.create( user=user, contact=con, address=add, dob=d2, image=i)
         else:
-            sign = Auction_User.objects.create(membership=mem, user=user, contact=con, address=add, dob=d2, image=i)
+            sign = Auction_User.objects.create( user=user, contact=con, address=add, dob=d2, image=i)
         error = True
     d = {'error': error}
     return render(request, 'signup.html', d)
@@ -200,8 +200,8 @@ def Auction_Home(request):
             error = "pat"
     except:
         sign = Auction_User.objects.get(user=user)
-    if sign.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if sign.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     d = {'error': error, 'data': sign}
     return render(request, 'dashboard.html', d)
 
@@ -218,8 +218,8 @@ def profile(request):
             error = "pat"
     except:
         sign = Auction_User.objects.get(user=user)
-    if sign.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if sign.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     user = User.objects.get(id=request.user.id)
     u = ""
     try:
@@ -285,8 +285,8 @@ def Change_Password1(request):
             error = "pat"
     except:
         sign = Auction_User.objects.get(user=user)
-    if sign.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if sign.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     terror = ""
     if request.method == "POST":
         n = request.POST['pwd1']
@@ -359,8 +359,8 @@ def Edit_Profile1(request):
             error = "pat"
     except:
         pro = Auction_User.objects.get(user=user1)
-    if pro.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if pro.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     terror = False
     if request.method == 'POST':
         f = request.POST['fname']
@@ -816,8 +816,8 @@ def Winner2(request, pid):
     except:
         data = Auction_User.objects.get(user=user)
 
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     pro2 = Product.objects.get(id=pid)
     au = Aucted_Product.objects.get(product=pro2)
     re = Result.objects.get(result="Winner")
@@ -838,8 +838,8 @@ def Winner1(request, pid):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     pro2 = Product.objects.get(id=pid)
     au = Aucted_Product.objects.get(product=pro2)
     re = Result.objects.get(result="Winner")
@@ -923,8 +923,8 @@ def Feedback(request):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     date1 = datetime.date.today()
     user = User.objects.get(id=request.user.id)
     pro = ""
@@ -1020,8 +1020,8 @@ def view_auction(request,pid):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     terror = False
     if request.method == "POST":
         pro1 = Product.objects.get(id=pid)
@@ -1039,7 +1039,7 @@ def view_auction(request,pid):
     pro1 = Product.objects.all()
     message1=""
     if not pro:
-        message1 = " No Any Bidding Product "
+        message1 = " No Any Verify Property "
     for i in pro:
         if i.id in li:
             i.temp = 1
@@ -1123,8 +1123,8 @@ def product_detail(request, pid):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     pro = Product.objects.get(id=pid)
     end = pro.session.time.split(':')
     end1 = ""
@@ -1214,8 +1214,8 @@ def Participated_user(request, pid):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
     auc = Aucted_Product.objects.get(id=pid)
     pro1 = Participant.objects.filter(aucted_product=auc)
     message1 = ""
@@ -1237,8 +1237,8 @@ def Payment_mode(request, pid):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    if data.membership.fee == "Unpaid":
-        return redirect('Member_Payment_mode')
+    # if data.membership.fee == "Unpaid":
+    #     return redirect('Member_Payment_mode')
 
     d = {'error': error, 'pid': pid}
     return render(request, 'payment_mode.html', d)
