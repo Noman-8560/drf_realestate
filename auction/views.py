@@ -459,7 +459,7 @@ def view_category(request):
     except:
         pro = Auction_User.objects.all().first()
     cat = Category.objects.all()
-    d = {'error': error, 'pro': pro, 'data': pro, 'cat': cat, 'count': count, 'new2': new2}
+    d = { 'pro': pro, 'data': pro, 'cat': cat, 'count': count, 'new2': new2}
     return render(request, 'view_category.html', d)
 
 
@@ -573,7 +573,7 @@ def view_subcategory(request):
     except:
         pro = Auction_User.objects.all().first()
     cat = Sub_Category.objects.all()
-    d = {'error': error, 'pro': pro, 'data': pro, 'cat': cat, 'count': count, 'new2': new2}
+    d = {'pro': pro, 'data': pro, 'cat': cat, 'count': count, 'new2': new2}
     return render(request, 'view_subcategory.html', d)
 
 
