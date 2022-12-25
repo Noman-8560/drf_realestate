@@ -4,14 +4,33 @@
 
 {% if error == "pat" %}
 <script>
-    alert('logged in successfully');
-    window.location=('{% url 'view_property' 0 %}');
+<!--    alert('logged in successfully');-->
+<!--    window.location=('{% url 'view_property' 0 %}');-->
+swal({
+  title: "Success!",
+  text: "Log In Successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'view_property' 0 %}');
+});
 </script>
 {% endif %}
 {% if error == "pat1" %}
 <script>
-    alert('logged in successfully');
-    window.location=('{% url 'seller_home' %}');
+<!--    alert('logged in successfully');-->
+<!--    window.location=('{% url 'seller_home' %}');-->
+
+swal({
+  title: "Success!",
+  text: "Log In Successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'seller_home' %}');
+});
 </script>
 {% endif %}
 {% if error == "not" %}
