@@ -4,13 +4,29 @@
 
 {% if error == "yes" %}
 <script>
-    alert('logged in successfully');
-    window.location=('{% url 'admin_home' %}');
+swal({
+  title: "Success!",
+  text: "Log In Successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'admin_home' %}');
+});
+<!--    alert('logged in successfully');-->
+<!--    window.location=('{% url 'admin_home' %}');-->
 </script>
 {% endif %}
 {% if error == "not" %}
 <script>
-    alert('Wrong Credentials');
+swal({
+  title: "Error!",
+  text: "Wrong Credentials",
+  type: "error",
+  timer: 2000,
+  showConfirmButton: false
+});
+<!--    alert('Wrong Credentials');-->
 </script>
 {% endif %}
 

@@ -24,8 +24,17 @@
 </div>
 {% if terror %}
 <script>
-    alert('Assigned successfully');
-    window.location = "{% url 'new_product' %}";
+swal({
+  title: "Success!",
+  text: "Status Assigned successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'new_product' %}');
+});
+<!--    alert('Assigned successfully');-->
+<!--    window.location = "{% url 'new_product' %}";-->
 </script>
 {% endif %}
 

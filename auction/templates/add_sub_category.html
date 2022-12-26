@@ -31,8 +31,17 @@
 
 {% if error %}
 <script>
-    alert('1 Sub-Category Added Successfully');
-    window.location = "{% url 'view_subcategory' %}";
+swal({
+  title: "Success!",
+  text: "Sub-Category Added Successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'view_subcategory' %}');
+});
+<!--    alert('1 Sub-Category Added Successfully');-->
+<!--    window.location = "{% url 'view_subcategory' %}";-->
 </script>
 {% endif %}
 {% endblock %}

@@ -81,8 +81,17 @@
 </div>
 {% if terror %}
 <script>
-    alert('1 new Product Added Successfully');
-    window.location = "{% url 'all_product' %}";
+swal({
+  title: "Success!",
+  text: "New Property Added Successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'all_product' %}');
+});
+<!--    alert('1 new Product Added Successfully');-->
+<!--    window.location = "{% url 'all_product' %}";-->
 </script>
 {% endif %}
 

@@ -22,8 +22,19 @@
 
 {% if error %}
 <script>
-    alert('1 Category Added Successfully');
-    window.location = "{% url 'view_category' %}";
+
+swal({
+  title: "Success!",
+  text: "Category Added Successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'view_category' %}');
+});
+
+<!--    alert('1 Category Added Successfully');-->
+<!--    window.location = "{% url 'view_category' %}";-->
 </script>
 {% endif %}
 {% endblock %}
