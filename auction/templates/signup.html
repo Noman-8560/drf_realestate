@@ -85,8 +85,15 @@
 </div>
 {% if error %}
 <script>
-    alert('Regitered Successfully');
-    window.location = "{% url 'login_user' %}";
+swal({
+  title: "Success!",
+  text: "Sign Up Successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'login_user' %}');
+});
 </script>
 {% endif %}
 
