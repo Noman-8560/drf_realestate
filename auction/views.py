@@ -1117,10 +1117,6 @@ def All_product(request):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-
-    # if data.membership.fee == "Unpaid":
-    #     return redirect('Member_Payment_mode')
-    # pro = Aucted_Product.objects.filter(user=data)
     pro = Aucted_Product.objects.filter(user=data)
     d = {'pro': pro, 'error': error}
     return render(request, 'All_prodcut.html', d)
