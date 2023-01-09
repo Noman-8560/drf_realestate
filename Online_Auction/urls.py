@@ -6,6 +6,7 @@ from auction.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('add/<int:property_id>/to/me/',add_property_to_me,name="home"),
     path('',Home,name="home"),
     path('user_home',Bidder_Home,name="user_home"),
     path('trainer_home',Auction_User,name="trainer_home"),
@@ -32,7 +33,6 @@ urlpatterns = [
     path('all_product2', All_product2,name="all_product2"),
     path('profile', profile, name='profile'),
     path('result', result, name='result'),
-    path('view_property(<int:pid>)', view_property, name='view_property'),
     path('view_property(<int:pid>)', view_property, name='view_property'),
     path('google_pay(<int:pid>)', Google_pay, name='google_pay'),
     path('payment2(<int:pid>)', Credit_Card, name='payment2'),

@@ -9,6 +9,15 @@ from django.db.models import Avg, Max, Min, Sum
 
 
 # Create your views here.
+def add_property_to_me(request, *args, **kwargs):
+    if request.user.is_authenticated:
+        property_id = kwargs.get('property_id')
+        property = Product.objects.get(pk=property_id)
+        property.purchased_by = request.user
+        property.save()
+    return redirect("/")
+
+
 def Home(request):
     data = 0
     error = ""
@@ -111,9 +120,9 @@ def Signup_User(request):
         user = User.objects.create_user(email=e, username=u, password=p, first_name=f, last_name=l)
         # mem = Member_fee.objects.get(fee="Unpaid")
         if reg == "Bidder":
-            sign = Bidder.objects.create( user=user, contact=con, address=add, dob=d2, image=i)
+            sign = Bidder.objects.create(user=user, contact=con, address=add, dob=d2, image=i)
         else:
-            sign = Auction_User.objects.create( user=user, contact=con, address=add, dob=d2, image=i)
+            sign = Auction_User.objects.create(user=user, contact=con, address=add, dob=d2, image=i)
         error = True
     d = {'error': error}
     return render(request, 'signup.html', d)
@@ -459,7 +468,7 @@ def view_category(request):
     except:
         pro = Auction_User.objects.all().first()
     cat = Category.objects.all()
-    d = { 'pro': pro, 'data': pro, 'cat': cat, 'count': count, 'new2': new2}
+    d = {'pro': pro, 'data': pro, 'cat': cat, 'count': count, 'new2': new2}
     return render(request, 'view_category.html', d)
 
 
@@ -984,10 +993,11 @@ def Add_Product(request):
         sub = Sub_Category.objects.get(id=s)
         ses = Session_Time.objects.all().first()
         sta = Status.objects.get(status="pending")
-        pro1=Product.objects.create(status=sta,session=ses,category=sub,name=p, min_price=pr,lati_tude=lt,longi_tude=lg, images=i)
-        auc=Aucted_Product.objects.create(product=pro1,user=sell)
+        pro1 = Product.objects.create(status=sta, session=ses, category=sub, name=p, min_price=pr, lati_tude=lt,
+                                      longi_tude=lg, images=i)
+        auc = Aucted_Product.objects.create(product=pro1, user=sell)
         terror = True
-    d = {'sed': sed,'sett':sett,'cat': cat,'scat':scat,'date1': date1,'terror':terror,'error':error}
+    d = {'sed': sed, 'sett': sett, 'cat': cat, 'scat': scat, 'date1': date1, 'terror': terror, 'error': error}
     return render(request, 'add_product.html', d)
 
 
@@ -1010,19 +1020,14 @@ def load_courses1(request):
     return render(request, 'courses_dropdown_list_options1.html', {'courses': courses})
 
 
-def view_property(request,pid):
+def view_property(request, pid):
     if not request.user.is_authenticated:
         return redirect('login_user')
     data = 0
-    user = User.objects.get(username=request.user.username)
+    user = request.user
     error = ""
     try:
-        # data = Bidder.objects.get(user=user)
-        # if request.method=="GET":
-        #     st=request.GET.get('servicename')
-        #     if st!=None:
-        #         data = Bidder.objects.filter(category=st)
-
+        data = Bidder.objects.get(user=user)
         if data:
             error = "pat"
     except:
@@ -1034,7 +1039,7 @@ def view_property(request,pid):
     if request.method == "POST":
         pro1 = Product.objects.get(id=pid)
         auc = Aucted_Product.objects.get(product=pro1)
-        Participant.objects.create(user=data,aucted_product=auc)
+        Participant.objects.create(user=data, aucted_product=auc)
         c = request.POST['cat']
         terror = True
     pid = 0
@@ -1045,8 +1050,8 @@ def view_property(request,pid):
 
     status = Status.objects.get(status="Accept")
     pro = Product.objects.filter(status=status)
-    pro1 = Product.objects.all()
-    message1=""
+    pro1 = Product.objects.all().exclude(purchased_by=request.user)
+    message1 = ""
     if not pro:
         message1 = " No Any Verify Property "
     for i in pro:
@@ -1069,7 +1074,7 @@ def view_property(request,pid):
         now_total = (int(y) * 365) + (int(m) * 30) + (int(d))
         part = Participant.objects.all()
         for l in part:
-            z=l.aucted_product.product.session.date.date
+            z = l.aucted_product.product.session.date.date
             li2 = z.split('-')
             total_time_part = (int(li2[0]) * 365) + (int(li2[1]) * 30) + (int(li2[2]))
             if total_time_part < now_total:
@@ -1086,7 +1091,7 @@ def view_property(request,pid):
             if time1 == time2:
                 i.temp = 2
                 i.save()
-            elif time2 < time3 and time2>time1:
+            elif time2 < time3 and time2 > time1:
                 i.temp = 2
                 i.save()
             elif time2 > time3:
@@ -1096,8 +1101,8 @@ def view_property(request,pid):
 
             i.temp = 3
             i.save()
-    d = {'pro':pro1,'error':error,'terror':terror,'cat':cat, 'message1':message1}
-    return render(request,'view_property.html',d)
+    d = {'pro': pro1, 'error': error, 'terror': terror, 'cat': cat, 'message1': message1}
+    return render(request, 'view_property.html', d)
 
 
 def All_product(request):
@@ -1115,6 +1120,7 @@ def All_product(request):
 
     # if data.membership.fee == "Unpaid":
     #     return redirect('Member_Payment_mode')
+    # pro = Aucted_Product.objects.filter(user=data)
     pro = Aucted_Product.objects.filter(user=data)
     d = {'pro': pro, 'error': error}
     return render(request, 'All_prodcut.html', d)
@@ -1169,7 +1175,7 @@ def product_detail2(request, pid):
         end1 = str(int(end[0]) + 1)
     end2 = end1 + ":" + end[1]
     pro1 = Aucted_Product.objects.all().first()
-    d = {'pro': pro, 'pro1': pro1, 'error': error, 'data': data,}
+    d = {'pro': pro, 'pro1': pro1, 'error': error, 'data': data, }
     return render(request, 'product_detail2.html', d)
 
 
@@ -1492,7 +1498,6 @@ def Change_status(request, pid):
 def winner_announced(request):
     return redirect('result')
 
-
 # class UserSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = Bidder
@@ -1502,5 +1507,3 @@ def winner_announced(request):
 #     queryset = Bidder.objects.all()
 #     serializer_class = UserSerializer
 #     lookup_field = 'pk'
-
-

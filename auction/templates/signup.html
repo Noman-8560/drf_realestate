@@ -6,15 +6,15 @@
 
     <div class="row">
     <div class="col-md-6">
-      <h3 class="text-center">Existing CUSTOMERS</h3><hr>
+      <h3 class="text-center">Existing Customers</h3><hr>
       <p>By creating an account with our corporations,we will be able to move through the
       checkout process faster,property addresses,view and track your orders in your
         account and more.</p>
   <button class="btn"style="background-color:#181D31;color:white;margin-top:4%"><a href="{% url 'login_user' %}" style="color:white">ALREADY HAVE AN ACCOUNT</a></button>
     </div>
     <div class="col-md-6">
-      <h3 class="text-center">REGISTERED With Us</h3>
-        <p align="center">If you have not an account with us , please signup</p><hr>
+      <h3 class="text-center">Register With Us</h3>
+        <p align="center">If you don't have an account , please signup</p><hr>
 
 <form method="post" action="" enctype="multipart/form-data">
     {% csrf_token %}
@@ -96,5 +96,4 @@ swal({
 });
 </script>
 {% endif %}
-
 {% endblock %}
