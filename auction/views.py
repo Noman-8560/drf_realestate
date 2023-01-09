@@ -976,13 +976,15 @@ def Add_Product(request):
         s = request.POST['scat']
         p = request.POST['p_name']
         pr = request.POST['price']
+        lt = request.POST['lati']
+        lg = request.POST['longi']
         i = request.FILES['image']
         # sett1 = request.POST['time']
         # sed1 = request.POST['date']
         sub = Sub_Category.objects.get(id=s)
         ses = Session_Time.objects.all().first()
         sta = Status.objects.get(status="pending")
-        pro1=Product.objects.create(status=sta,session=ses,category=sub,name=p, min_price=pr, images=i)
+        pro1=Product.objects.create(status=sta,session=ses,category=sub,name=p, min_price=pr,lati_tude=lt,longi_tude=lg, images=i)
         auc=Aucted_Product.objects.create(product=pro1,user=sell)
         terror = True
     d = {'sed': sed,'sett':sett,'cat': cat,'scat':scat,'date1': date1,'terror':terror,'error':error}
@@ -1015,18 +1017,25 @@ def view_property(request,pid):
     user = User.objects.get(username=request.user.username)
     error = ""
     try:
-        data = Bidder.objects.get(user=user)
+        # data = Bidder.objects.get(user=user)
+        # if request.method=="GET":
+        #     st=request.GET.get('servicename')
+        #     if st!=None:
+        #         data = Bidder.objects.filter(category=st)
+
         if data:
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
     # if data.membership.fee == "Unpaid":
     #     return redirect('Member_Payment_mode')
+    cat = Category.objects.all()
     terror = False
     if request.method == "POST":
         pro1 = Product.objects.get(id=pid)
         auc = Aucted_Product.objects.get(product=pro1)
         Participant.objects.create(user=data,aucted_product=auc)
+        c = request.POST['cat']
         terror = True
     pid = 0
     d1 = Participant.objects.filter(user=data)
@@ -1087,7 +1096,7 @@ def view_property(request,pid):
 
             i.temp = 3
             i.save()
-    d = {'pro':pro1,'error':error,'terror':terror,'message1':message1}
+    d = {'pro':pro1,'error':error,'terror':terror,'cat':cat, 'message1':message1}
     return render(request,'view_property.html',d)
 
 

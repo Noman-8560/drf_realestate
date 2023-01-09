@@ -66,14 +66,17 @@ class Status(models.Model):
 
 class Product(models.Model):
     temp = models.IntegerField(null=True)
-    status  =models.ForeignKey(Status,on_delete=models.CASCADE,null=True)
+    status = models.ForeignKey(Status,on_delete=models.CASCADE,null=True)
     name = models.CharField(max_length=100,null=True)
     min_price = models.IntegerField(null=True)
     images = models.FileField(null=True)
+    lati_tude = models.FloatField(default=0.0)
+    longi_tude = models.FloatField(default=0.0)
     session = models.ForeignKey(Session_Time,on_delete=models.CASCADE,null=True)
     category = models.ForeignKey(Sub_Category,on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.name
+
 
 class Aucted_Product(models.Model):
     winner = models.CharField(max_length=100,null=True)

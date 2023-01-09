@@ -4,11 +4,25 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUCnILl7ok0o9UQwGUn8_1xMexXpIXBEI&callback=initAutocomplete&libraries=places&v=weekly"
+            defer></script>
+
+
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <style type="text/css">
+        #map {
+            width: 100%;
+            height: 480px;
+        }
+    </style>
 
 <div class="container" style="background:white">
     <h2 style="font-weight:bold; color : #181D31 ;margin-top:20px" align="center">Add Property</h2><hr>
 
-<div class="container-fluid" style="width:70%;margin-top:6%">
+<div class="container-fluid col-md-6"  style="margin-top:6%">
 <form method="post" action="" id="indexForm" enctype="multipart/form-data" data-courses-url="{% url 'ajax_load_courses' %}" data-courses-url1="{% url 'ajax_load_courses1' %}">
     {% csrf_token %}
     <div class="form-row">
@@ -36,7 +50,7 @@
         <div class="form-row">
     <div class="form-group col-md-6">
     <label for="exampleInputPassword1">Property Name</label>
-    <input type="text" class="form-control" placeholder="Enter product Name" id="exampleInputPassword1" name="p_name">
+    <input type="text" class="form-control" placeholder="Enter property Name" id="exampleInputPassword1" name="p_name">
 </div>
             <div class="form-group col-md-6">
     <label for="exampleInputPassword1">Price</label>
@@ -49,6 +63,18 @@
     <input type="file" class="form-control" id="exampleInputPassword1" name="image">
 </div>
     </div>
+
+    <!--Map-->
+            <div class="form-row">
+    <div class="form-group col-md-6">
+    <label for="exampleInputPassword1">Latitude</label>
+    <input type="number" step="any" class="form-control" placeholder="" id="id_latitude" name="lati">
+</div>
+            <div class="form-group col-md-6">
+    <label for="exampleInputPassword1">Longitude</label>
+    <input type="number" step="any" class="form-control" id="id_longitude" name="longi">
+</div></div>
+    <!--Map-->
 
 <!--    <div class="form-row">-->
 <!--        <div class="col-md-6">-->
@@ -78,6 +104,23 @@
     </div>
 </form>
 </div>
+
+
+
+    <div id="search" class="col-md-6">
+            <input
+                    id="pac-input"
+                    class="controls mt-1"
+                    type="text"
+                    placeholder="Search Place"
+                    style="height: 30px; width: 200px"
+            />
+            <div id="map"></div>
+            <br>
+            <button class="btn btn-success" id="confirmPosition">Confirm Position</button>
+            <button class="btn btn-warning" onclick="new_search()">Show Search</button>
+
+        </div>
 </div>
 {% if terror %}
 <script>
@@ -132,6 +175,135 @@ swal({
 
     });
   </script>
+
+<script>
+
+        document.getElementById('id_latitude').onfocus = validate;
+        document.getElementById('id_longitude').onfocus = validate;
+
+        function validate() {
+            var t = this.value;
+            this.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 6)) : t;
+        }
+
+        function initAutocomplete() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: 35.9202, lng: 74.3080},
+                zoom: 13,
+                mapTypeId: "roadmap",
+            });
+            // Create the search box and link it to the UI element.
+            const input = document.getElementById("pac-input");
+            const searchBox = new google.maps.places.SearchBox(input);
+
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener("bounds_changed", () => {
+                searchBox.setBounds(map.getBounds());
+            });
+
+            let markers = [];
+
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener("places_changed", () => {
+                const places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                // Clear out the old markers.
+                markers.forEach((marker) => {
+                    marker.setMap(null);
+                });
+                markers = [];
+
+                // For each place, get the icon, name and location.
+                const bounds = new google.maps.LatLngBounds();
+                let target_marker;
+
+                places.forEach((place) => {
+                    if (!place.geometry || !place.geometry.location) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    place_ = place;
+                    const icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25),
+                    };
+
+                    // Create a marker for each place.
+                    markers.push(
+                        target_marker = new google.maps.Marker({
+                            map,
+                            icon,
+                            title: place.name,
+                            position: place.geometry.location,
+                        })
+                    );
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+
+                var confirmBtn = document.getElementById('confirmPosition');
+
+                // Initialize LocationPicker plugin
+                var lp = new locationPicker(document.getElementById("map"), {
+                    setCurrentPosition: true, // You can omit this, defaults to true
+                    lat: target_marker.getPosition().lat(),
+                    lng: target_marker.getPosition().lng(),
+
+                }, {
+                    zoom: 15 // You can set any google map options here, zoom defaults to 15
+                });
+
+                // Listen to button onclick event
+                confirmBtn.onclick = function () {
+                    // Get current location and show it in HTML
+                    var location = lp.getMarkerPosition();
+                    document.getElementById('id_latitude').value = location.lat;
+                    document.getElementById('id_latitude').focus();
+                    document.getElementById('id_longitude').value = location.lng;
+                    document.getElementById('id_longitude').focus();
+
+                };
+
+                // Listen to map idle event, listening to idle event more accurate than listening to ondrag event
+                google.maps.event.addListener(lp.map, 'idle', function (event) {
+                    // Get current location and show it in HTML
+                });
+
+            });
+
+
+        }
+
+        window.initAutocomplete = initAutocomplete;
+
+        function new_search() {
+            $("#search").load(window.location.href + " #search");
+
+            function greet() {
+                console.log('Hello world');
+                initAutocomplete();
+                document.getElementById("map").style.width = "600px";
+            }
+
+            setTimeout(greet, 50);
+            console.log('This message is shown first');
+        }
+
+    </script>
 
 
 {% endblock %}

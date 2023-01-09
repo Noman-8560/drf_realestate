@@ -2,10 +2,37 @@
 {% block body %}
 {% load static %}
 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <div class="container" style="width:100%;background:white">
       <center><h2 style="padding-top:;margin-top:5%;font-weight:bold;color:#181D31">View Property</h2></center>
 <hr>
+
+
+    <div class="form-row">
+
+<!--        <div class="col-md-6">-->
+<!--     <div class="form-group">-->
+<!--    <label for="exampleFormControlSelect1">Categories</label>-->
+
+<!--         			{% for i in cat %}-->
+<!--				<a href="{% url 'view_property' 0 %}"-->
+<!--					class="list-group-item list-group-item-action" value="{{i.id}}">{{i.id}} {{i.name}}</a>-->
+<!--				{% endfor %}-->
+
+<!--     </div>-->
+<!--        </div>-->
+
+<!--        <form>-->
+<!--            <input type="text" name="servicename" value="" />-->
+<!--            <input type="submit" value="search" />-->
+<!--        </form>-->
+
  <div class="container-fluid">
+<!--     <div class="search">-->
+<!--         <input type="text" name="" id="find" placeholder="Search Here..." onkeyup="search()"  />-->
+<!--     <div/>-->
    	<h1 class="text-center mt-5 mb-5">
                     <center><h3 align="center" style="color:red">{{message1}}</h3></center>
    	</h1>
@@ -13,7 +40,7 @@
 			{% for j in pro %}
             {% if j.status.status == "Accept" or j.status.status == "Done" %}
 				<div class="col-md-4">
-                    <div style="padding:px;width:80%;margin-bottom:5%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="product" style="padding:px;width:80%;margin-bottom:5%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 					<center>
                         <img src="{{j.images.url}}" style="width:100%;height:240px;float:center"></center>
    						<div style="padding:20px">
@@ -57,4 +84,27 @@
     window.location = "{% url 'view_auction' 0 %}";
 </script>
 {% endif %}
+    <script type="text/javascript">
+        function search() {
+        let filter = document.getElementById('find').value.toUppercase();
+
+        let item = document.querySelectorAll('.product');
+
+        let l = document.getElementsByTagName('h5');
+
+        for(var i = 0;i<=l.length;i++){
+            let a=item[i].getElementsByTagName('h5')[0];
+
+            let value=a.innerHTML || a.innerText || a.textContent;
+
+            if(value.toUpperCase().indexOf(filter) > -1){
+                item[i].style.display="";
+            }
+            else
+            {
+                item[i].style.display="none";
+            }
+        }
+    }
+    </script>
 {% endblock %}
