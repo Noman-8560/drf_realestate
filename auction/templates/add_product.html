@@ -22,6 +22,7 @@
         display:flex;
         }
 
+
 </style>
 
 <div class="container" style="background:white">
@@ -68,9 +69,13 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-12">
-                    <label for="exampleInputPassword1">Property Image</label>
+                <div class="form-group col-md-6">
+                    <label for="image">Property Image</label>
                     <input type="file" class="form-control" id="image" name="image" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="noc">NOC</label>
+                    <input type="file" class="form-control" id="noc" name="noc" required>
                 </div>
             </div>
 
@@ -134,7 +139,7 @@
         <button class="btn " style="background-color:#181D31;color:white;border:none" id="confirmPosition">Confirm
             Position
         </button>
-<!--                    <button class="btn" style="background-color:#181D31;color:white;border:none" onclick="new_search()">Show Search</button>-->
+        <!--                    <button class="btn" style="background-color:#181D31;color:white;border:none" onclick="new_search()">Show Search</button>-->
 
     </div>
 </div>
@@ -151,6 +156,7 @@ swal({
 });
 <!--    alert('1 new Product Added Successfully');-->
 <!--    window.location = "{% url 'all_product' %}";-->
+
 
 </script>
 {% endif %}
@@ -174,6 +180,7 @@ swal({
 
     });
 
+
 </script>
 
 <script>
@@ -192,6 +199,7 @@ swal({
       });
 
     });
+
 
 </script>
 
@@ -321,6 +329,7 @@ swal({
             setTimeout(greet, 50);
             console.log('This message is shown first');
         }
+
 
 
 </script>

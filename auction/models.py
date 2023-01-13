@@ -77,6 +77,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100, null=True)
     min_price = models.IntegerField(null=True)
     images = models.FileField(null=True)
+    noc = models.FileField(null=True)
     lati_tude = models.FloatField(default=0.0)
     longi_tude = models.FloatField(default=0.0)
     session = models.ForeignKey(Session_Time, on_delete=models.CASCADE, null=True)
@@ -126,3 +127,11 @@ class Send_Feedback(models.Model):
 
     def __str__(self):
         return self.profile.username
+
+
+class paypal_payment(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    property_cat = models.CharField(max_length=100, null=True)
+    property_sel = models.CharField(max_length=100, null=True)
+    price = models.IntegerField(null=True)
+

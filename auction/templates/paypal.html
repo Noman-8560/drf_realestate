@@ -1,0 +1,42 @@
+{% extends 'navigation3.html' %}
+{% block body1 %}
+<div class="container" style="background:white">
+    <center><h2 style=" color : #00021a ; font-weight : bold;margin-top:2%">Payments</h2></center>
+    <div class="container-fluid" style="margin-top:3%">
+    </div>
+
+    <table class="table responsive" id="myTable">
+        <thead style="background:white;">
+        <tr>
+            <th>Sr. No</th>
+            <th>Property Name</th>
+            <th>Category</th>
+            <th>Seller</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for i in cat %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.property_cat}}</td>
+            <td>{{i.property_sel}}</td>
+            <td>{{i.price}}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+            var el_up = document.getElementById("GFG_UP");
+
+            el_up.innerHTML =
+                "Click on the LINK for further confirmation.";
+
+</script>
+{% endblock %}

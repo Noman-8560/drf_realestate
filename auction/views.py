@@ -988,17 +988,37 @@ def Add_Product(request):
         lt = request.POST['lati']
         lg = request.POST['longi']
         i = request.FILES['image']
+        n = request.FILES['noc']
         # sett1 = request.POST['time']
         # sed1 = request.POST['date']
         sub = Sub_Category.objects.get(id=s)
         ses = Session_Time.objects.all().first()
         sta = Status.objects.get(status="pending")
         pro1 = Product.objects.create(status=sta, session=ses, category=sub, name=p, min_price=pr, lati_tude=lt,
-                                      longi_tude=lg, images=i)
+                                      longi_tude=lg, images=i, noc=n)
         auc = Aucted_Product.objects.create(product=pro1, user=sell)
         terror = True
     d = {'sed': sed, 'sett': sett, 'cat': cat, 'scat': scat, 'date1': date1, 'terror': terror, 'error': error}
     return render(request, 'add_product.html', d)
+
+
+def Payments(request):
+    # if request.method == "POST":
+    #     name = request.POST.get('name')
+    #     property_cat = request.POST.get('property_cat')
+    #     property_sel = request.POST.get('property_sel')
+    #     price = request.POST.get('price')
+    #
+    #     paysm = paypal_payment(
+    #         name=name,
+    #         property_cat=property_cat,
+    #         property_sel=property_sel,
+    #         price=price
+    #     )
+    #     paysm.save()
+    #     return redirect('home')
+
+     return render(request,'product_detail.html')
 
 
 def load_courses(request):

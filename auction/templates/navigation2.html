@@ -2,31 +2,31 @@
 {% load static %}
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 
-
-
-<script href="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script href="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script href="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<link rel="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-<link rel="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <script href="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script href="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script href="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 
-<script>
+    <script>
     $(document).ready( function () {
     $('#myTable').DataTable();
 } );
-</script>
-<style>
+
+    </script>
+    <style>
 thead{
 background:#00d644;
 }
@@ -162,83 +162,84 @@ div.sticky {
   position: sticky;
   top: 0;
 }
-</style>
+
+    </style>
 </head>
 <body style="background-color:lightgrey;width:100%">
 
-    <div align="center"  class="main" style=";background-color:lightgrey;width:82%;height:100%;margin-top:0%">
+<div align="center" class="main" style=";background-color:lightgrey;width:82%;height:100%;margin-top:0%">
     {% block body %}
     {% endblock %}
-  </div>
+</div>
 
 <div class="sidenav" style="top:0; margin-top:0;padding-top:0;position:fixed;height:100%;width:17%;">
-   <div class="row" style="padding:10px;float:center" align="center">
-     <div class="col-md-12">
+    <div class="row" style="padding:10px;float:center" align="center">
+        <div class="col-md-12">
             <img src="{% static 'images/ABFA.png' %}" style="width:90px;height:90px">
-     </div>
-<!--     <div class="col-md-8" align="left" style="padding:7%">-->
-<!--            <span style="color:red;font-weight:bold;font-size:18px">Administration</span>-->
-<!--     </div>-->
-   </div>
-<!--    <div style="padding:0px;background-color:#180f3d;float:center" align="center">-->
-<!--     <a href="{% url 'admin_home' %}" style="float:center;"> <i style="margin-left:40%;color:white" class="fa fa-home"></i> </a>-->
-<!--  </div>-->
-        <a href="{% url 'admin_home' %}"><i class="fa fa-home"></i> Dashboard</a>
+        </div>
+        <!--     <div class="col-md-8" align="left" style="padding:7%">-->
+        <!--            <span style="color:red;font-weight:bold;font-size:18px">Administration</span>-->
+        <!--     </div>-->
+    </div>
+    <!--    <div style="padding:0px;background-color:#180f3d;float:center" align="center">-->
+    <!--     <a href="{% url 'admin_home' %}" style="float:center;"> <i style="margin-left:40%;color:white" class="fa fa-home"></i> </a>-->
+    <!--  </div>-->
+    <a href="{% url 'admin_home' %}"><i class="fa fa-home"></i> Dashboard</a>
 
     <button class="dropdown1-btn"><i class="fa fa-list-alt"></i> Category
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown1-container">
-    <a href="{% url 'add_category' %}"> Add Category</a>
-    <a href="{% url 'view_category' %}"> View Category</a>
-  </div>
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown1-container">
+        <a href="{% url 'add_category' %}"> Add Category</a>
+        <a href="{% url 'view_category' %}"> View Category</a>
+    </div>
 
     <button class="dropdown1-btn"><i class="fa fa-list-alt"></i> Sub-Category
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown1-container">
-    <a href="{% url 'add_subcategory' %}"> New Sub-Category</a>
-    <a href="{% url 'view_subcategory' %}"> View Sub-Category</a>
-  </div>
-<!--    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Session Date-->
-<!--    <i class="fa fa-caret-down"></i>-->
-<!--  </button>-->
-<!--  <div class="dropdown1-container">-->
-<!--    <a href="{% url 'add_session_date' %}"> Add Session Date</a>-->
-<!--    <a href="{% url 'view_session_date' %}"> View Session Date</a>-->
-<!--  </div>-->
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown1-container">
+        <a href="{% url 'add_subcategory' %}"> New Sub-Category</a>
+        <a href="{% url 'view_subcategory' %}"> View Sub-Category</a>
+    </div>
+    <!--    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Session Date-->
+    <!--    <i class="fa fa-caret-down"></i>-->
+    <!--  </button>-->
+    <!--  <div class="dropdown1-container">-->
+    <!--    <a href="{% url 'add_session_date' %}"> Add Session Date</a>-->
+    <!--    <a href="{% url 'view_session_date' %}"> View Session Date</a>-->
+    <!--  </div>-->
 
-<!--    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Session Time-->
-<!--    <i class="fa fa-caret-down"></i>-->
-<!--  </button>-->
-<!--  <div class="dropdown1-container">-->
-<!--    <a href="{% url 'add_session_time' %}"> Add Session Time</a>-->
-<!--    <a href="{% url 'view_session_time' %}"> View Session Time</a>-->
-<!--  </div>-->
+    <!--    <button class="dropdown1-btn"><i class="fa fa-cog"></i> Session Time-->
+    <!--    <i class="fa fa-caret-down"></i>-->
+    <!--  </button>-->
+    <!--  <div class="dropdown1-container">-->
+    <!--    <a href="{% url 'add_session_time' %}"> Add Session Time</a>-->
+    <!--    <a href="{% url 'view_session_time' %}"> View Session Time</a>-->
+    <!--  </div>-->
 
     <button class="dropdown1-btn"><i class="fa fa-user"></i> User
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown1-container">
-    <a href="{% url 'bidder_user' %}"> Buyer User</a>
-    <a href="{% url 'seller_user' %}"> Seller User</a>
-  </div>
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown1-container">
+        <a href="{% url 'bidder_user' %}"> Buyer User</a>
+        <a href="{% url 'seller_user' %}"> Seller User</a>
+    </div>
 
-  <button class="dropdown1-btn"><i class="fa fa-check-circle"></i> Property Verification
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown1-container">
-    <a href="{% url 'new_product' %}"> New Property</a>
-    <a href="{% url 'all_product2' %}"> View All Property</a>
-  </div>
+    <button class="dropdown1-btn"><i class="fa fa-check-circle"></i> Property Verification
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown1-container">
+        <a href="{% url 'new_product' %}"> New Property</a>
+        <a href="{% url 'all_product2' %}"> View All Property</a>
+    </div>
 
+    <a href="{% url 'payments' %}"><i class="fa fa-dollar"></i> Payments</a>
 
-<!--    <a href="{% url 'result' %}"><i class="fa fa-folder"></i> Result</a>-->
-<!--    <a href="{% url 'view_feedback' %}"><i class="fa fa-folder"></i> Feedback</a>-->
+    <!--    <a href="{% url 'result' %}"><i class="fa fa-folder"></i> Result</a>-->
+    <!--    <a href="{% url 'view_feedback' %}"><i class="fa fa-folder"></i> Feedback</a>-->
 
 
 </div>
-
 
 
 <script>
@@ -257,9 +258,16 @@ for (i = 0; i < dropdown1.length; i++) {
   }
   });
 }
+
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 </html>
