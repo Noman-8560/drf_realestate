@@ -1,0 +1,137 @@
+{% extends 'navigation.html' %}
+{% block body %}
+{% load static %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUCnILl7ok0o9UQwGUn8_1xMexXpIXBEI&callback=initAutocomplete&libraries=places&v=weekly"
+        defer></script>
+
+
+<script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+<style type="text/css">
+        #map {
+            width: 100%;
+            height: 380px;
+            margin-top:20%
+        }
+        .container{
+        display:flex;
+        }
+
+
+</style>
+
+<div class="container" style="background:white">
+
+    <div class="container-fluid col-md-6" style="margin-top:6%">
+        <h2 style="font-weight:bold; color : #181D31 ;margin-top:20px" align="center">Add Property</h2>
+        <hr>
+
+        <form method="post" action="" id="indexForm" enctype="multipart/form-data"
+              data-courses-url="{% url 'ajax_load_courses' %}" data-courses-url1="{% url 'ajax_load_courses1' %}">
+            {% csrf_token %}
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="names">Property Name</label>
+                    <input type="text" class="form-control" id="names" name="names"
+                           required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="property_cats">Property Category</label>
+                    <input type="text" class="form-control" id="property_cats" name="property_cats" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="property_sels">Property Seller</label>
+                    <input type="text" class="form-control" id="property_sels" name="property_sels" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="prices">Price</label>
+                    <input type="number" class="form-control" id="prices" name="prices" required>
+                </div>
+            </div>
+
+
+
+
+            <div align="center">
+                <button type="submit"
+                        style="width:100%;margin-bottom:5%;background-color:#181D31;color:white;border:none"
+                        class="btn">Submit
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+
+</div>
+{% if terror %}
+<script>
+swal({
+  title: "Success!",
+  text: "New Property Added Successfully",
+  type: "success",
+  timer: 2000,
+  showConfirmButton: false
+}, function(){
+      window.location = ('{% url 'all_product' %}');
+});
+<!--    alert('1 new Product Added Successfully');-->
+<!--    window.location = "{% url 'all_product' %}";-->
+
+
+</script>
+{% endif %}
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#programming").change(function () {
+      var url = $("#indexForm").attr("data-courses-url");  // get the url of the `load_courses` view
+      var programmingId = $(this).val();  // get the selected programming ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+        data: {
+          'programming': programmingId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_courses` view function
+          $("#courses").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+
+
+</script>
+
+<script>
+    $("#programming1").change(function () {
+      var url = $("#indexForm").attr("data-courses-url1");  // get the url of the `load_courses` view
+      var programmingId = $(this).val();  // get the selected programming ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+        data: {
+          'programming': programmingId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_courses` view function
+          $("#courses1").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+
+
+</script>
+
+
+{% endblock %}

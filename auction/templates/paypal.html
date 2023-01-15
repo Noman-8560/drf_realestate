@@ -17,15 +17,18 @@
         </thead>
         <tbody>
 
-        {% for i in cat %}
+        {% for i in prod %}
         <tr>
             <td>{{forloop.counter}}</td>
             <td>{{i.name}}</td>
             <td>{{i.property_cat}}</td>
             <td>{{i.property_sel}}</td>
             <td>{{i.price}}</td>
+
         </tr>
+
         {% endfor %}
+
 
         </tbody>
     </table>
@@ -37,6 +40,7 @@
 
             el_up.innerHTML =
                 "Click on the LINK for further confirmation.";
+
 
 </script>
 {% endblock %}

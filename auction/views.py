@@ -733,6 +733,21 @@ def All_product2(request):
     return render(request, 'all_product2.html', d)
 
 
+def Paypal(request):
+    if not request.user.is_authenticated:
+        return redirect('login_user')
+    new2 = new()
+    count = 0
+    if new2:
+        count += 1
+    user1 = User.objects.get(id=request.user.id)
+    pro = ""
+    error = False
+    prod = Paypal_Payment.objects.all()
+    d = {'error': error, 'pro': pro, 'data': pro, 'prod': prod, 'count': count, 'new2': new2}
+    return render(request, 'paypal.html', d)
+
+
 def Bidder_User(request):
     if not request.user.is_staff:
         return redirect('login_user')
@@ -1002,23 +1017,27 @@ def Add_Product(request):
     return render(request, 'add_product.html', d)
 
 
-def Payments(request):
-    # if request.method == "POST":
-    #     name = request.POST.get('name')
-    #     property_cat = request.POST.get('property_cat')
-    #     property_sel = request.POST.get('property_sel')
-    #     price = request.POST.get('price')
-    #
-    #     paysm = paypal_payment(
-    #         name=name,
-    #         property_cat=property_cat,
-    #         property_sel=property_sel,
-    #         price=price
-    #     )
-    #     paysm.save()
-    #     return redirect('home')
+def Testing(request):
+    if not request.user.is_authenticated:
+        return redirect('login_user')
+    data = 0
+    user = User.objects.get(username=request.user.username)
+    error = ""
 
-     return render(request,'product_detail.html')
+    terror = False
+    if request.method == "POST":
+        n = request.POST['names']
+        pc = request.POST['property_cats']
+        ps = request.POST['property_sels']
+        pr = request.POST['prices']
+        print("TEST")
+        print(pr)
+
+        pro1 = Paypal_Payment.objects.create(name=n, property_cat=pc, property_sel=ps, price=pr)
+        terror = True
+    d = {'terror': terror, 'error': error}
+
+    return render(request, 'testing.html', d)
 
 
 def load_courses(request):
@@ -1154,8 +1173,7 @@ def product_detail(request, pid):
             error = "pat"
     except:
         data = Auction_User.objects.get(user=user)
-    # if data.membership.fee == "Unpaid":
-    #     return redirect('Member_Payment_mode')
+
     pro = Product.objects.get(id=pid)
     end = pro.session.time.split(':')
     end1 = ""
@@ -1164,6 +1182,17 @@ def product_detail(request, pid):
     else:
         end1 = str(int(end[0]) + 1)
     end2 = end1 + ":" + end[1]
+
+    terror = False
+    if request.method == "POST":
+        n = request.POST['names']
+        pc = request.POST['property_cats']
+        ps = request.POST['property_sels']
+        pr = request.POST['prices']
+
+        pro1 = Paypal_Payment.objects.create(name=n, property_cat=pc, property_sel=ps, price=pr)
+        terror = True
+
     pro1 = Aucted_Product.objects.all().first()
     d = {'pro': pro, 'pro1': pro1, 'error': error}
     return render(request, 'product_detail.html', d)

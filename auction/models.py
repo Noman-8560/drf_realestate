@@ -129,9 +129,12 @@ class Send_Feedback(models.Model):
         return self.profile.username
 
 
-class paypal_payment(models.Model):
+class Paypal_Payment(models.Model):
     name = models.CharField(max_length=100, null=True)
     property_cat = models.CharField(max_length=100, null=True)
     property_sel = models.CharField(max_length=100, null=True)
     price = models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.name
 

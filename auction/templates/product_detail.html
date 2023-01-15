@@ -13,89 +13,106 @@
 
 
 
+
+
+
 </style>
 
 <div class="container" style="width:60%;margin-top:2%;margin-bottom:4%;box-shadow: 10px ;">
     <center><h4 style="margin:4%">Property Details</h4></center>
     <hr>
+    <form method="post" action="" id="indexForm" enctype="multipart/form-data">
+        {% csrf_token %}
 
 
-    <div class="row" style="padding:20px">
-        <div class="col-md-6">
-            <img src="{{pro.images.url}}" style="width:100%">
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-6">
-                    <span>Property Name : </span>
-                </div>
-                <div class="col-md-6">
-                    <span style="font-weight:bold" id="p_name" > {{pro.name}}</span>
-                    <hr>
-                </div>
-
-                <div class="col-md-6">
-                    <span>Property Category : </span>
-                </div>
-                <div class="col-md-6">
-                    <span style="font-weight:bold" id="pr_cat" > {{pro.category}}</span>
-                    <hr>
-                </div>
-                <div class="col-md-6">
-                    <span>Property Seller : </span>
-                </div>
-                <div class="col-md-6">
-                    <span style="font-weight:bold" id="pr_sl" > {{pro1.user.user.username}}</span>
-                    <hr>
-                </div>
-                <div class="col-md-6">
-                    <span>Property Price : </span>
-                </div>
-                <div class="col-md-6">
-                    <span style="font-weight:bold" id="prices" > ${{pro.min_price}}.00 /-</span>
-                    <hr>
-                </div>
-                <div class="col-md-6">
-                    <span>Property NOC : </span>
-                </div>
-                <div class="col-md-6">
-                    <img src="{{pro.noc.url}}" style="width:100%">
-                    <hr>
-                </div>
+        <div class="row" style="padding:20px">
+            <div class="col-md-6">
+                <img src="{{pro.images.url}}" style="width:100%">
             </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Property Name : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" step="any" class="form-control" id="names"
+                               name="names" style="border:none;background-color:white" value="{{pro.name}}"/>
+                        <hr>
+                    </div>
+
+                    <div class="col-md-6">
+                        <span>Property Category : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" step="any" class="form-control" id="property_cats"
+                               name="property_cats" style="border:none;background-color:white"
+                               value="{{pro.category}}"/>
+                        <hr>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Property Seller : </span>
+                    </div>
+                    <div class="col-md-6">
+
+                        <input type="text" step="any" class="form-control" id="property_sels"
+                               name="property_sels" style="border:none;background-color:white"
+                               value="{{pro1.user.user.username}}"/>
+
+                        <hr>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Property Price : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" step="any" class="form-control" id="prices"
+                               name="prices" style="border:none;background-color:white" value="{{pro.min_price}}"/>
+                        <hr>
+                    </div>
+                    <div class="col-md-6">
+                        <span>Property NOC : </span>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{pro.noc.url}}" style="width:100%">
+                        <hr>
+                    </div>
+                </div>
 
 
-            <br/>
-            {% if pro.temp == 0 %}
-            <!--            <form action="{% url 'view_auction' pro.id %}" method="post">-->
-            <!--				{% csrf_token %}-->
-            <!--				<button type="submit" class="btn btn-primary" style="width:100%" onclick="return confirm('Are you sure?')">Participate</button>-->
-            <!--			</form>-->
-            {% else %}
-            <!--            <div align="center" style="color:red">Already Participated</div>-->
-            {% endif %}
+                <br/>
+                {% if pro.temp == 0 %}
+                <!--            <form action="{% url 'view_auction' pro.id %}" method="post">-->
+                <!--				{% csrf_token %}-->
+                <!--				<button type="submit" class="btn btn-primary" style="width:100%" onclick="return confirm('Are you sure?')">Participate</button>-->
+                <!--			</form>-->
+                {% else %}
+                <!--            <div align="center" style="color:red">Already Participated</div>-->
+                {% endif %}
+            </div>
         </div>
-    </div>
-    <div class="col-12">
-        <div id="map"></div>
-    </div>
-        <div id="paypal-button-container" style="width:400px;margin-left:25%;margin-top:3%"></div>
-<!--    <form method="post" action="" id="indexForm" enctype="multipart/form-data">-->
-<!--        {% csrf_token %}-->
-<!--        <div class="container">-->
-<!--            <input type="text" class="form-control" id="name" name="name" required>-->
-<!--            <input type="text" class="form-control" id="property_cat" name="property_cat" required>-->
-<!--            <input type="text" class="form-control" id="property_sel" name="property_sel" required>-->
-<!--            <input type="number" class="form-control" id="price" name="price" required>-->
-<!--            <button type="submit">submit</button>-->
-<!--        </div>-->
-<!--    </form>-->
+        <div class="col-12">
+            <div id="map"></div>
+        </div>
+
+                <div align="center">
+                    <button type="submit" id="btn_submit"
+                            style="width:100%;margin-bottom:5%;background-color:#181D31;color:white;border:none"
+                            class="btn" hidden>Submit
+                    </button>
+                </div>
+
+                <div id="paypal-button-container"  style="width:400px;margin-left:25%;margin-top:3%">
+                </div>
+
+    </form>
+
 
 </div>
+
 
 {% block scripts %}
 <script src="https://www.paypal.com/sdk/js?client-id=ATAvtqDWjHGNqwZbr1oJyuv1WRLbKEbJ4N7lapc41H8UbIO8bPMwpmful21S7R755eqF44FpxilgDgun&currency=USD&intent=capture&enable-funding=venmo"
         data-sdk-integration-source="integrationbuilder"></script>
+
 <script>
 let propertyId = {{ pro.pk }}
           const paypalButtonsComponent = paypal.Buttons({
@@ -105,7 +122,6 @@ let propertyId = {{ pro.pk }}
                 color: "gold",
                 shape: "rect",
                 layout: "vertical"
-
               },
 
               // set up the transaction
@@ -137,7 +153,12 @@ swal({
   timer: 2000,
   showConfirmButton: false
 }, function(){
-      window.location = `/add/${propertyId}/to/me/`;
+    console.log("Should open in new")
+      window.open(`/add/${propertyId}/to/me/`, '_blank').focus();
+      setTimeout(function(){
+            document.getElementById("btn_submit").click();
+      }, 1000);
+
 });
                   };
 
@@ -155,8 +176,6 @@ swal({
               .catch((err) => {
                   console.error('PayPal Buttons failed to render');
               });
-
-
 
 </script>
 {% endblock scripts %}
