@@ -76,6 +76,8 @@ class Product(models.Model):
     status = models.ForeignKey(Status, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100, null=True)
     min_price = models.IntegerField(null=True)
+    wid_th = models.IntegerField(null=True)
+    len_ght = models.IntegerField(null=True)
     images = models.FileField(null=True)
     noc = models.FileField(null=True)
     lati_tude = models.FloatField(default=0.0)

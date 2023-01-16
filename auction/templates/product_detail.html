@@ -16,6 +16,9 @@
 
 
 
+
+
+
 </style>
 
 <div class="container" style="width:60%;margin-top:2%;margin-bottom:4%;box-shadow: 10px ;">
@@ -36,7 +39,8 @@
                     </div>
                     <div class="col-md-6">
                         <input type="text" step="any" class="form-control" id="names"
-                               name="names" style="border:none;background-color:white" value="{{pro.name}}"/>
+                               name="names" style="border:none;background-color:white;font-weight:bold;color:black"
+                               value="{{pro.name}}"/>
                         <hr>
                     </div>
 
@@ -45,7 +49,7 @@
                     </div>
                     <div class="col-md-6">
                         <input type="text" step="any" class="form-control" id="property_cats"
-                               name="property_cats" style="border:none;background-color:white"
+                               name="property_cats" style="border:none;background-color:white;font-weight:bold;color:black"
                                value="{{pro.category}}"/>
                         <hr>
                     </div>
@@ -55,7 +59,7 @@
                     <div class="col-md-6">
 
                         <input type="text" step="any" class="form-control" id="property_sels"
-                               name="property_sels" style="border:none;background-color:white"
+                               name="property_sels" style="border:none;background-color:white;font-weight:bold;color:black"
                                value="{{pro1.user.user.username}}"/>
 
                         <hr>
@@ -65,9 +69,19 @@
                     </div>
                     <div class="col-md-6">
                         <input type="text" step="any" class="form-control" id="prices"
-                               name="prices" style="border:none;background-color:white" value="{{pro.min_price}}"/>
+                               name="prices" style="border:none;background-color:white;font-weight:bold;color:black"
+                               value="{{pro.min_price}}"/>
                         <hr>
                     </div>
+                    <div class="col-md-6">
+                        <span>Property Size</span>
+                    </div>
+                    <div class="col-md-6">
+
+                        <span style="font-weight:bold"> {{pro.wid_th}} X {{pro.len_ght}}</span>
+                        <hr>
+                    </div>
+
                     <div class="col-md-6">
                         <span>Property NOC : </span>
                     </div>
@@ -93,15 +107,15 @@
             <div id="map"></div>
         </div>
 
-                <div align="center">
-                    <button type="submit" id="btn_submit"
-                            style="width:100%;margin-bottom:5%;background-color:#181D31;color:white;border:none"
-                            class="btn" hidden>Submit
-                    </button>
-                </div>
+        <div align="center">
+            <button type="submit" id="btn_submit"
+                    style="width:100%;margin-bottom:5%;background-color:#181D31;color:white;border:none"
+                    class="btn" hidden>Submit
+            </button>
+        </div>
 
-                <div id="paypal-button-container"  style="width:400px;margin-left:25%;margin-top:3%">
-                </div>
+        <div id="paypal-button-container" style="width:400px;margin-left:25%;margin-top:3%">
+        </div>
 
     </form>
 
@@ -177,6 +191,9 @@ swal({
                   console.error('PayPal Buttons failed to render');
               });
 
+
+
+
 </script>
 {% endblock scripts %}
 
@@ -197,6 +214,9 @@ var marker = new google.maps.Marker({
   position: {lat: {{pro.lati_tude}}, lng: {{pro.longi_tude}}},
   map: map,
 });
+
+
+
 
 
 </script>

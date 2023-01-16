@@ -23,6 +23,7 @@
         }
 
 
+
 </style>
 
 <div class="container" style="background:white">
@@ -58,12 +59,12 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="exampleInputPassword1">Property Name</label>
-                    <input type="text" class="form-control" placeholder="Enter property Name" id="p_name" name="p_name"
+                    <label for="p_name">Property Name</label>
+                    <input type="text" class="form-control"  id="p_name" name="p_name"
                            required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="exampleInputPassword1">Price</label>
+                    <label for="price">Price</label>
                     <input type="number" class="form-control" id="price" name="price" required>
                 </div>
             </div>
@@ -79,6 +80,17 @@
                 </div>
             </div>
 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="wid_th">Width</label>
+                    <input type="number" class="form-control" id="wid_th" name="wid_th" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="len_ght">Length</label>
+                    <input type="number" class="form-control" id="len_ght" name="len_ght" required>
+                </div>
+            </div>
+
             <!--Map-->
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -91,30 +103,7 @@
                     <input type="number" step="any" class="form-control" id="id_longitude" name="longi" required>
                 </div>
             </div>
-            <!--Map-->
-
-            <!--    <div class="form-row">-->
-            <!--        <div class="col-md-6">-->
-            <!--     <div class="form-group">-->
-            <!--    <label for="exampleFormControlSelect1">Select Session Date</label>-->
-            <!--    <select class="form-control" id="programming1" name="date">-->
-            <!--        <option value="">-&#45;&#45;select Session Date-&#45;&#45;</option>-->
-            <!--            {% for i in sed %}-->
-            <!--            <option value="{{i.id}}">{{i.date}}</option>-->
-            <!--            {% endfor %}-->
-            <!--    </select>-->
-            <!--     </div>-->
-            <!--        </div>-->
-            <!--        <div class="col-md-6">-->
-            <!--     <div class="form-group">-->
-            <!--    <label for="exampleFormControlSelect1">Session Time</label>-->
-            <!--    <select class="form-control" id="courses1" name="time">-->
-
-            <!--    </select>-->
-            <!--     </div>-->
-            <!--        </div>-->
-            <!--    </div>-->
-
+            <!--MAP-->
 
             <div align="center">
                 <button type="submit"
@@ -158,6 +147,7 @@ swal({
 <!--    window.location = "{% url 'all_product' %}";-->
 
 
+
 </script>
 {% endif %}
 
@@ -181,6 +171,7 @@ swal({
     });
 
 
+
 </script>
 
 <script>
@@ -199,6 +190,7 @@ swal({
       });
 
     });
+
 
 
 </script>
@@ -329,6 +321,7 @@ swal({
             setTimeout(greet, 50);
             console.log('This message is shown first');
         }
+
 
 
 

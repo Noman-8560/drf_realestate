@@ -1002,6 +1002,8 @@ def Add_Product(request):
         pr = request.POST['price']
         lt = request.POST['lati']
         lg = request.POST['longi']
+        wd = request.POST['wid_th']
+        ln = request.POST['len_ght']
         i = request.FILES['image']
         n = request.FILES['noc']
         # sett1 = request.POST['time']
@@ -1010,7 +1012,7 @@ def Add_Product(request):
         ses = Session_Time.objects.all().first()
         sta = Status.objects.get(status="pending")
         pro1 = Product.objects.create(status=sta, session=ses, category=sub, name=p, min_price=pr, lati_tude=lt,
-                                      longi_tude=lg, images=i, noc=n)
+                                      longi_tude=lg, images=i, noc=n, wid_th=wd, len_ght=ln)
         auc = Aucted_Product.objects.create(product=pro1, user=sell)
         terror = True
     d = {'sed': sed, 'sett': sett, 'cat': cat, 'scat': scat, 'date1': date1, 'terror': terror, 'error': error}
